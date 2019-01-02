@@ -1,4 +1,5 @@
 class Canvas {
+    // #todo deal with aspect ratio, center alignment and a background (tiled?)
     constructor(game) {
         this.game = game;
         this.tileSize = 64;
@@ -20,10 +21,13 @@ class Canvas {
 
     drawLevel() {
         this.drawMap();
+        this.drawExits();
+        this.drawPushBlockHomes();
         this.drawPushBlocks();
     }
 
     drawPlayer() {
+        // #todo #idea Animation class could contain methods that create range loops based on game tick to animate player shape.
         var playerTile = this.game.tiles.getPlayerTile(),
             top = this.game.player.position.row * this.tileSize,
             left = this.game.player.position.cell * this.tileSize,
@@ -102,6 +106,30 @@ class Canvas {
         }
     }
 
+    drawPushBlockHomes() {
+        if (
+            this.game.level.map.interactables === undefined
+            || this.game.level.map.interactables.pushBlockHomes === undefined
+        ) {
+            return false;
+        }
+        for (let pushBlockHome of this.game.level.map.interactables.pushBlockHomes) {
+            var top = pushBlockHome.position.row * this.tileSize,
+                left = pushBlockHome.position.cell * this.tileSize,
+                colour = this.game.tiles.pushBlockHomeTiles[0].colour;
+            this.drawTileOutline(colour, top, left);
+        }
+    }
+
+    drawExits() {
+        for (let exit of this.game.level.map.interactables.exits) {
+            var top = exit.position.row * this.tileSize,
+                left = exit.position.cell * this.tileSize,
+                colour = this.game.exit.tile.colour;
+            this.drawTileOutline(colour, top, left);
+        }
+    }
+
     drawMapTile(mapTileID, row, cell) {
         if (mapTileID === undefined) {
             return false;
@@ -121,6 +149,17 @@ class Canvas {
             top,
             this.tileSize, 
             this.tileSize
+        );
+    }
+
+    drawTileOutline(colour, top, left, thickness=6) {
+        this.ctx.strokeStyle = colour;
+        this.ctx.lineWidth = thickness;
+        this.ctx.strokeRect(
+            left + (thickness),
+            top + (thickness),
+            this.tileSize - (thickness * 2), 
+            this.tileSize - (thickness * 2)
         );
     }
 }

@@ -8,6 +8,7 @@ class Game {
         this.level = new Level(this);
         this.player = new Player(this);
         this.pushBlocks = new PushBlocks(this);
+        this.exit = new Exit(this);
         this.controls = new Controls(this);
         this.canvas = new Canvas(this);
 
@@ -22,5 +23,26 @@ class Game {
     tick() {
         this.tickFrame++;
         this.canvas.drawFrame();
+    }
+
+    loadNextLevel() {
+        var nextLevelID = this.level.map.levelID + 1;
+        if (!this.maps.getByLevelID(nextLevelID)) {
+            nextLevelID = 1;
+        }
+
+        this.loadLevel(nextLevelID);
+    }
+
+    restartLevel() {
+        this.loadLevel(this.level.map.levelID);
+    }
+
+    loadLevel(levelID) {
+        this.level = new Level(this, levelID);
+        this.player = new Player(this);
+        this.pushBlocks = new PushBlocks(this);
+        this.exit = new Exit(this);
+        this.canvas = new Canvas(this);
     }
 }

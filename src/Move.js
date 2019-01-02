@@ -1,4 +1,8 @@
 class Move {
+
+    // #todo #bug only put an entity to a position once it is finished moving there.
+    // at the moment, the entity is considered in place even while queued.
+
     constructor(game) {
         this.game = game;
         this.list = [];

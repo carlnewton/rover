@@ -9,7 +9,7 @@ class Player {
     }
 
     move(direction) {
-        var newPosition = this.game.level.getNextAvailablePositionForDirection(direction, this.position.row, this.position.cell),
+        var newPosition = this.game.level.getNextAvailablePositionForDirection(direction, this.position.row, this.position.cell, 'player'),
             pushBlock = {};
 
         if (newPosition.row === this.position.row && newPosition.cell === this.position.cell) {
@@ -26,6 +26,10 @@ class Player {
             this.game.move.add('player', 0, this.position.row, this.position.cell, newPosition.row, newPosition.cell, this.speed);
             this.position.row = newPosition.row;
             this.position.cell = newPosition.cell;
+        }
+
+        if (this.game.exit.found()) {
+            this.game.level.complete();
         }
     }
 }

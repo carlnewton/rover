@@ -4,14 +4,23 @@ class Tiles {
             {
                 id: 0,
                 name: 'floor',
-                colour: '#ddd',
-                obstructs: false,
+                colour: '#e5ddcb',
+                obstructsPlayer: false,
+                obstructsPushBlock: false,
             },
             {
                 id: 1,
                 name: 'wall',
-                colour: '#999',
-                obstructs: true,
+                colour: '#bc6247',
+                obstructsPlayer: true,
+                obstructsPushBlock: true,
+            },
+            {
+                id: 2,
+                name: 'noBlockFloor',
+                colour: '#d9d2c1',
+                obstructsPlayer: false,
+                obstructsPushBlock: true,
             }
         ];
 
@@ -19,8 +28,9 @@ class Tiles {
             {
                 id: 0,
                 name: 'rover',
-                colour: '#000',
-                obstructs: true,
+                colour: '#685e6c',
+                obstructsPlayer: true,
+                obstructsPushBlock: true,
             }
         ];
 
@@ -28,8 +38,36 @@ class Tiles {
             {
                 id: 0,
                 name: 'block',
-                colour: '#c90',
-                obstructs: true,
+                colour: '#eb7b59',
+                obstructsPlayer: true,
+                obstructsPushBlock: true,
+            }
+        ];
+
+        this.pushBlockHomeTiles = [
+            {
+                id: 0,
+                name: 'pushBlockHome',
+                colour: '#eb7b59',
+                obstructsPlayer: false,
+                obstructsPushBlock: false,
+            }
+        ];
+
+        this.exitTiles = [
+            {
+                id: 0,
+                name: 'enabled',
+                colour: '#685e6c',
+                obstructsPlayer: false,
+                obstructsPushBlock: false,
+            },
+            {
+                id: 1,
+                name: 'disabled',
+                colour: '#c7c0b1',
+                obstructsPlayer: false,
+                obstructsPushBlock: false,
             }
         ];
     }

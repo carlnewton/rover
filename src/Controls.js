@@ -25,6 +25,12 @@ class Controls {
             case 'D':
                 this.game.player.move('right');
                 break;
+            case ' ':
+                this.game.restartLevel();
+                break;
+            case ']': // #todo remove this 
+                this.game.loadNextLevel();
+                break;
         } 
     }
 }

@@ -4,14 +4,17 @@ class Level {
         this.map = this.game.maps.getByLevelID(levelID);
     }
 
-    locationAvailable(row, cell) {
+    locationAvailable(row, cell, availableFor) {
         if (!this.locationExists(row, cell)) {
             return false;
         }
 
         var tile = this.getMapTile(row, cell);
 
-        if (tile.obstructs) {
+        if (
+            availableFor === 'player' && tile.obstructsPlayer
+            || availableFor === 'pushBlock' && tile.obstructsPushBlock
+        ) {
             return false;
         }
 
@@ -40,7 +43,7 @@ class Level {
         return this.game.tiles.getByID('map', mapTileID);
     }
 
-    getNextAvailablePositionForDirection(direction, row, cell) {
+    getNextAvailablePositionForDirection(direction, row, cell, availableFor) {
         var originalRow = row,
             originalCell = cell;
 
@@ -59,7 +62,7 @@ class Level {
                 break;
         }
 
-        if (!this.locationAvailable(row, cell)) {
+        if (!this.locationAvailable(row, cell, availableFor)) {
             return {
                 row: originalRow,
                 cell: originalCell
@@ -70,5 +73,9 @@ class Level {
             row: row,
             cell: cell
         };
+    }
+
+    complete() {
+        this.game.loadNextLevel();
     }
 }
