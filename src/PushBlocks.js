@@ -37,6 +37,7 @@ class PushBlocks {
                     return false;
                 }
 
+                this.game.move.add('pushBlock', pushBlock.id, pushBlock.row, pushBlock.cell, newPosition.row, newPosition.cell, this.game.player.speed);
                 pushBlock.row = newPosition.row;
                 pushBlock.cell = newPosition.cell;
 
