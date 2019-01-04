@@ -5,7 +5,7 @@ class Player {
             row: game.level.map.player.position.row,
             cell: game.level.map.player.position.cell
         };
-        this.speed = 30;
+        this.speed = 25;
     }
 
     move(direction) {
@@ -28,8 +28,16 @@ class Player {
             this.position.cell = newPosition.cell;
         }
 
+        this.checkAlive();
+
         if (this.game.exit.found()) {
             this.game.level.complete();
+        }
+    }
+
+    checkAlive() {
+        if (this.game.laser.laserExists(this.position.row, this.position.cell)) {
+            this.game.restartLevel();
         }
     }
 }

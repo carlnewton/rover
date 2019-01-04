@@ -143,6 +143,243 @@ class Maps {
                     ]
                 }
             },
+            // Level
+            {
+                levelID: 5,
+                map: [
+                    [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1],
+                ],
+                player: {
+                    position: {
+                        row: 3,
+                        cell: 7
+                    }
+                },
+                interactables: {
+                    pushBlocks: [
+                        {
+                            type: 'default',
+                            position: {
+                                row: 5,
+                                cell: 7
+                            }
+                        }
+                    ],
+                    pushBlockHomes: [
+                        {
+                            position: {
+                                row: 3,
+                                cell: 7
+                            }
+                        },
+                    ],
+                    exits: [
+                        {
+                            position: {
+                                row: 5,
+                                cell: 7
+                            }
+                        }
+                    ]
+                }
+            },
+            // Level
+            {
+                levelID: 6,
+                map: [
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0],
+                    [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+                    [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+                    [0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                ],
+                player: {
+                    position: {
+                        row: 6,
+                        cell: 5
+                    }
+                },
+                interactables: {
+                    pushBlocks: [
+                        {
+                            type: 'default',
+                            position: {
+                                row: 4,
+                                cell: 3
+                            }
+                        },
+                        {
+                            type: 'default',
+                            position: {
+                                row: 1,
+                                cell: 7
+                            }
+                        }
+                    ],
+                    pushBlockHomes: [
+                        {
+                            position: {
+                                row: 4,
+                                cell: 3
+                            }
+                        },
+                        {
+                            position: {
+                                row: 1,
+                                cell: 7
+                            }
+                        },
+                    ],
+                    exits: [
+                        {
+                            position: {
+                                row: 3,
+                                cell: 5
+                            }
+                        }
+                    ]
+                }
+            },
+            // Level
+            {
+                levelID: 7,
+                map: [
+                    [0, 0, 0, 1, 0, 2, 0, 0, 0, 0, 0],
+                    [2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+                    [1, 2, 0, 0, 2, 1, 0, 0, 0, 0, 0],
+                    [0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0],
+                    [0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                ],
+                player: {
+                    position: {
+                        row: 6,
+                        cell: 10
+                    }
+                },
+                interactables: {
+                    pushBlocks: [
+                        {
+                            type: 'default',
+                            position: {
+                                row: 2,
+                                cell: 2
+                            }
+                        },
+                        {
+                            type: 'default',
+                            position: {
+                                row: 3,
+                                cell: 3
+                            }
+                        },
+                        {
+                            type: 'default',
+                            position: {
+                                row: 4,
+                                cell: 4
+                            }
+                        },
+                        {
+                            type: 'default',
+                            position: {
+                                row: 0,
+                                cell: 6
+                            }
+                        }
+                    ],
+                    pushBlockHomes: [
+                        {
+                            position: {
+                                row: 2,
+                                cell: 2
+                            }
+                        },
+                        {
+                            position: {
+                                row: 3,
+                                cell: 3
+                            }
+                        },
+                        {
+                            position: {
+                                row: 4,
+                                cell: 4
+                            }
+                        },
+                        {
+                            position: {
+                                row: 0,
+                                cell: 10
+                            }
+                        },
+                    ],
+                    exits: [
+                        {
+                            position: {
+                                row: 6,
+                                cell: 10
+                            }
+                        }
+                    ]
+                }
+            },
+            // Level
+            {
+                levelID: 8,
+                map: [
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                ],
+                player: {
+                    position: {
+                        row: 2,
+                        cell: 2
+                    }
+                },
+                interactables: {
+                    pushBlocks: [
+                        {
+                            type: 'default',
+                            position: {
+                                row: 4,
+                                cell: 2
+                            }
+                        },
+                    ],
+                    exits: [
+                        {
+                            position: {
+                                row: 3,
+                                cell: 8
+                            }
+                        }
+                    ],
+                    laserEmitters: [
+                        {
+                            position: {
+                                row: 0,
+                                cell: 5
+                            },
+                            direction: 'down'
+                        }
+                    ]
+                }
+            },
         ];
     }
 

@@ -7,6 +7,7 @@ class Tiles {
                 colour: '#e5ddcb',
                 obstructsPlayer: false,
                 obstructsPushBlock: false,
+                obstructsLaser: false,
             },
             {
                 id: 1,
@@ -14,6 +15,7 @@ class Tiles {
                 colour: '#bc6247',
                 obstructsPlayer: true,
                 obstructsPushBlock: true,
+                obstructsLaser: true,
             },
             {
                 id: 2,
@@ -21,6 +23,7 @@ class Tiles {
                 colour: '#d9d2c1',
                 obstructsPlayer: false,
                 obstructsPushBlock: true,
+                obstructsLaser: false,
             }
         ];
 
@@ -31,6 +34,7 @@ class Tiles {
                 colour: '#685e6c',
                 obstructsPlayer: true,
                 obstructsPushBlock: true,
+                obstructsLaser: true,
             }
         ];
 
@@ -41,6 +45,7 @@ class Tiles {
                 colour: '#eb7b59',
                 obstructsPlayer: true,
                 obstructsPushBlock: true,
+                obstructsLaser: true,
             }
         ];
 
@@ -51,6 +56,7 @@ class Tiles {
                 colour: '#eb7b59',
                 obstructsPlayer: false,
                 obstructsPushBlock: false,
+                obstructsLaser: false,
             }
         ];
 
@@ -61,6 +67,7 @@ class Tiles {
                 colour: '#685e6c',
                 obstructsPlayer: false,
                 obstructsPushBlock: false,
+                obstructsLaser: false,
             },
             {
                 id: 1,
@@ -68,8 +75,19 @@ class Tiles {
                 colour: '#c7c0b1',
                 obstructsPlayer: false,
                 obstructsPushBlock: false,
+                obstructsLaser: false,
             }
         ];
+
+        this.laserTiles = [
+            {
+                id: 0,
+                name: 'laserEmitter',
+                colour: '#bc6247',
+                obstructsPlayer: true,
+                obstructsPushBlock: true
+            }
+        ]
     }
 
     getByID(type, id) {

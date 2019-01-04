@@ -6,9 +6,14 @@ class Move {
     constructor(game) {
         this.game = game;
         this.list = [];
+        this.locked = false;
     }
 
     add(entityType, entityID, fromRow, fromCell, toRow, toCell, speed) {
+        if (this.locked) {
+            return false;
+        }
+
         if (fromRow === toRow && fromCell === toCell) {
             return false;
         }
@@ -36,6 +41,14 @@ class Move {
                 queued
             );
         this.list.push(entry);
+    }
+
+    lock() {
+        this.locked = true;
+    }
+
+    unlock() {
+        this.locked = false;
     }
 
     getCurrentPosition(entityType, entityID) {

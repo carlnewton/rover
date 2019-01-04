@@ -14,8 +14,23 @@ class Level {
         if (
             availableFor === 'player' && tile.obstructsPlayer
             || availableFor === 'pushBlock' && tile.obstructsPushBlock
+            || availableFor === 'laser' && tile.obstructsLaser
         ) {
             return false;
+        }
+
+        if (availableFor === 'laser' || availableFor === 'pushBlock') {
+            if (this.game.pushBlocks.getBlockByLocation(row, cell)) {
+                return false;
+            }
+        }
+
+        if (this.map.interactables !== undefined && this.map.interactables.laserEmitters !== undefined) {
+            for (let emitter of this.map.interactables.laserEmitters) {
+                if (emitter.position.row === row && emitter.position.cell === cell) {
+                    return false;
+                }
+            }
         }
 
         return true;
@@ -76,6 +91,7 @@ class Level {
     }
 
     complete() {
-        this.game.loadNextLevel();
+        this.game.move.lock();
+        this.game.queueNextLevel();
     }
 }

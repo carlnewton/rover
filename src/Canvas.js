@@ -23,6 +23,7 @@ class Canvas {
         this.drawMap();
         this.drawExits();
         this.drawPushBlockHomes();
+        this.drawLasers();
         this.drawPushBlocks();
     }
 
@@ -130,6 +131,33 @@ class Canvas {
         }
     }
 
+    drawLasers() {
+        this.drawLaserEmitters();
+        this.drawLaserLines();
+    }
+
+    drawLaserLines() {
+        for (let laser of this.game.laser.lasers) {
+            this.drawTileLine('vertical', this.tileSize / 11, '#c00', laser.row * this.tileSize, laser.cell * this.tileSize);
+        }
+    }
+
+    drawLaserEmitters() {
+        if (
+            this.game.level.map.interactables === undefined
+            || this.game.level.map.interactables.laserEmitters === undefined
+        ) {
+            return false;
+        }
+        for (let laserEmitter of this.game.level.map.interactables.laserEmitters) {
+            var top = laserEmitter.position.row * this.tileSize,
+                left = laserEmitter.position.cell * this.tileSize,
+                colour = this.game.tiles.laserTiles[0].colour;
+
+            this.drawTile(colour, top, left);
+        }
+    }
+
     drawMapTile(mapTileID, row, cell) {
         if (mapTileID === undefined) {
             return false;
@@ -152,7 +180,16 @@ class Canvas {
         );
     }
 
-    drawTileOutline(colour, top, left, thickness=6) {
+    drawTileLine(orientation, thickness, colour, top, left) {
+        this.ctx.strokeStyle = colour;
+        this.ctx.lineWidth = thickness;
+        this.ctx.beginPath();
+        this.ctx.moveTo(left + (this.tileSize / 2), top);
+        this.ctx.lineTo(left + (this.tileSize / 2), top + this.tileSize);
+        this.ctx.stroke();
+    }
+
+    drawTileOutline(colour, top, left, thickness=this.tileSize / 11) {
         this.ctx.strokeStyle = colour;
         this.ctx.lineWidth = thickness;
         this.ctx.strokeRect(

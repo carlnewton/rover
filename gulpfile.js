@@ -15,6 +15,7 @@ gulp.task('build', function() {
             './src/PushBlock.js',
             './src/PushBlocks.js',
             './src/Exit.js',
+            './src/Laser.js',
             './src/Controls.js',
             './src/Canvas.js',
             './src/Game.js',

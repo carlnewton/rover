@@ -9,10 +9,12 @@ class Game {
         this.player = new Player(this);
         this.pushBlocks = new PushBlocks(this);
         this.exit = new Exit(this);
+        this.laser = new Laser(this);
         this.controls = new Controls(this);
         this.canvas = new Canvas(this);
 
         this.tickFrame = 0;
+        this.nextLevelQueued = false;
     }
 
     run() {
@@ -23,9 +25,21 @@ class Game {
     tick() {
         this.tickFrame++;
         this.canvas.drawFrame();
+
+        if (
+            this.nextLevelQueued
+            && this.move.list.length === 0
+        ) {
+            this.loadNextLevel();
+        }
+    }
+
+    queueNextLevel() {
+        this.nextLevelQueued = true;
     }
 
     loadNextLevel() {
+        this.nextLevelQueued = false;
         var nextLevelID = this.level.map.levelID + 1;
         if (!this.maps.getByLevelID(nextLevelID)) {
             nextLevelID = 1;
@@ -39,10 +53,12 @@ class Game {
     }
 
     loadLevel(levelID) {
+        this.move = new Move(this);
         this.level = new Level(this, levelID);
         this.player = new Player(this);
         this.pushBlocks = new PushBlocks(this);
         this.exit = new Exit(this);
+        this.laser = new Laser(this);
         this.canvas = new Canvas(this);
     }
 }
