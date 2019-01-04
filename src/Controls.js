@@ -12,23 +12,33 @@ class Controls {
     }
 
     keyDown(key) {
-        switch (key.key.toUpperCase()) {
-            case 'W':
+        switch (key.keyCode) {
+            // `w` or up arrow
+            case 87:
+            case 38:
                 this.game.player.move('up');
                 break;
-            case 'S':
+            // `s` or down arrow
+            case 83:
+            case 40:
                 this.game.player.move('down');
                 break;
-            case 'A':
+            // `a` or left arrow
+            case 65:
+            case 37:
                 this.game.player.move('left');
                 break;
-            case 'D':
+            // `d` or right arrow
+            case 68:
+            case 39:
                 this.game.player.move('right');
                 break;
-            case ' ':
+            // space bar
+            case 32:
                 this.game.restartLevel();
                 break;
-            case ']': // #todo remove this 
+            // `]`
+            case 221: // #todo remove this 
                 this.game.loadNextLevel();
                 break;
         } 
