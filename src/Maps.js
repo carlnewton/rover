@@ -524,6 +524,74 @@ class Maps {
                     ]
                 }
             },
+            // Level
+            {
+                levelID: 11,
+                map: [
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                ],
+                player: {
+                    position: {
+                        row: 4,
+                        cell: 5
+                    }
+                },
+                interactables: {
+                    pushBlocks: [
+                        {
+                            type: 'default',
+                            position: {
+                                row: 3,
+                                cell: 5
+                            }
+                        }
+                    ],
+                    exits: [
+                        {
+                            position: {
+                                row: 1,
+                                cell: 10
+                            }
+                        }
+                    ],
+                    laserEmitters: [
+                        {
+                            position: {
+                                row: 1,
+                                cell: 7
+                            },
+                            direction: 'down'
+                        },
+                        {
+                            position: {
+                                row: 5,
+                                cell: 7
+                            },
+                            direction: 'left'
+                        },
+                        {
+                            position: {
+                                row: 1,
+                                cell: 3
+                            },
+                            direction: 'right'
+                        },
+                        {
+                            position: {
+                                row: 5,
+                                cell: 3
+                            },
+                            direction: 'up'
+                        }
+                    ]
+                }
+            },
         ];
     }
 

@@ -84,6 +84,7 @@ class Tiles {
                 id: 0,
                 name: 'laserEmitter',
                 colour: '#bc6247',
+                detailColour: '#663627',
                 obstructsPlayer: true,
                 obstructsPushBlock: true
             }

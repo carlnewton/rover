@@ -138,7 +138,7 @@ class Canvas {
 
     drawLaserLines() {
         for (let laser of this.game.laser.lasers) {
-            this.drawTileLine('vertical', this.tileSize / 11, '#c00', laser.row * this.tileSize, laser.cell * this.tileSize);
+            this.drawTileLine(laser.direction, this.tileSize / 11, '#c00', laser.row * this.tileSize, laser.cell * this.tileSize);
         }
     }
 
@@ -152,10 +152,45 @@ class Canvas {
         for (let laserEmitter of this.game.level.map.interactables.laserEmitters) {
             var top = laserEmitter.position.row * this.tileSize,
                 left = laserEmitter.position.cell * this.tileSize,
-                colour = this.game.tiles.laserTiles[0].colour;
+                tile = this.game.tiles.laserTiles[0];
 
-            this.drawTile(colour, top, left);
+            this.drawLaserEmitter(tile.colour, tile.detailColour, top, left, laserEmitter.direction);
         }
+    }
+
+    tileSizePercent(percentage) {
+        return  percentage / 100 * this.tileSize;
+    }
+
+    drawLaserEmitter(colour, detailColour, top, left, direction) {
+        this.drawTile(colour, top, left);
+
+        this.ctx.fillStyle = detailColour;
+        this.ctx.beginPath();
+        switch(direction) {
+            case 'up':
+                this.ctx.moveTo(left + this.tileSizePercent(50), top + this.tileSizePercent(20));
+                this.ctx.lineTo(left + this.tileSizePercent(33), top);
+                this.ctx.lineTo(left + this.tileSizePercent(66), top);
+                break;
+            case 'down':
+                this.ctx.moveTo(left + this.tileSizePercent(50), top + this.tileSizePercent(80));
+                this.ctx.lineTo(left + this.tileSizePercent(33), top + this.tileSize);
+                this.ctx.lineTo(left + this.tileSizePercent(66), top + this.tileSize);
+                break;
+            case 'left':
+                this.ctx.moveTo(left + this.tileSizePercent(20), top + this.tileSizePercent(50));
+                this.ctx.lineTo(left, top + this.tileSizePercent(33));
+                this.ctx.lineTo(left, top + this.tileSizePercent(66));
+                break;
+            case 'right':
+                this.ctx.moveTo(left + this.tileSizePercent(80), top + this.tileSizePercent(50));
+                this.ctx.lineTo(left + this.tileSize, top + this.tileSizePercent(33));
+                this.ctx.lineTo(left + this.tileSize, top + this.tileSizePercent(66));
+                break;
+        }
+        this.ctx.fill();
+        
     }
 
     drawMapTile(mapTileID, row, cell) {
@@ -180,12 +215,17 @@ class Canvas {
         );
     }
 
-    drawTileLine(orientation, thickness, colour, top, left) {
+    drawTileLine(direction, thickness, colour, top, left) {
         this.ctx.strokeStyle = colour;
         this.ctx.lineWidth = thickness;
         this.ctx.beginPath();
-        this.ctx.moveTo(left + (this.tileSize / 2), top);
-        this.ctx.lineTo(left + (this.tileSize / 2), top + this.tileSize);
+        if (direction === 'up' || direction === 'down') {
+            this.ctx.moveTo(left + (this.tileSize / 2), top);
+            this.ctx.lineTo(left + (this.tileSize / 2), top + this.tileSize);
+        } else {
+            this.ctx.moveTo(left, top + (this.tileSize / 2));
+            this.ctx.lineTo(left + this.tileSize, top + (this.tileSize / 2));
+        }
         this.ctx.stroke();
     }
 
