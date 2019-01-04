@@ -380,6 +380,150 @@ class Maps {
                     ]
                 }
             },
+            // Level
+            {
+                levelID: 9,
+                map: [
+                    [0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0],
+                    [0, 0, 0, 2, 2, 2, 0, 1, 0, 0, 0],
+                    [0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 2, 2, 2, 0, 1, 0, 0, 0],
+                    [0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+                ],
+                player: {
+                    position: {
+                        row: 5,
+                        cell: 1
+                    }
+                },
+                interactables: {
+                    pushBlocks: [
+                        {
+                            type: 'default',
+                            position: {
+                                row: 1,
+                                cell: 1
+                            }
+                        },
+                        {
+                            type: 'default',
+                            position: {
+                                row: 2,
+                                cell: 1
+                            }
+                        },
+                        {
+                            type: 'default',
+                            position: {
+                                row: 3,
+                                cell: 1
+                            }
+                        },
+                    ],
+                    exits: [
+                        {
+                            position: {
+                                row: 5,
+                                cell: 9
+                            }
+                        }
+                    ],
+                    laserEmitters: [
+                        {
+                            position: {
+                                row: 0,
+                                cell: 4
+                            },
+                            direction: 'down'
+                        },
+                        {
+                            position: {
+                                row: 0,
+                                cell: 5
+                            },
+                            direction: 'down'
+                        },
+                        {
+                            position: {
+                                row: 0,
+                                cell: 6
+                            },
+                            direction: 'down'
+                        },
+                    ],
+
+                }
+            },
+            // Level
+            {
+                levelID: 10,
+                map: [
+                    [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+                    [0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0],
+                    [1, 0, 1, 0, 2, 0, 2, 1, 0, 0, 0],
+                    [0, 0, 1, 2, 1, 1, 0, 0, 2, 1, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                ],
+                player: {
+                    position: {
+                        row: 1,
+                        cell: 6
+                    }
+                },
+                interactables: {
+                    pushBlocks: [
+                        {
+                            type: 'default',
+                            position: {
+                                row: 5,
+                                cell: 6
+                            }
+                        },
+                        {
+                            type: 'default',
+                            position: {
+                                row: 1,
+                                cell: 9
+                            }
+                        },
+                    ],
+                    pushBlockHomes: [
+                        {
+                            position: {
+                                row: 5,
+                                cell: 10
+                            }
+                        },
+                        {
+                            position: {
+                                row: 1,
+                                cell: 8
+                            }
+                        },
+                    ],
+                    exits: [
+                        {
+                            position: {
+                                row: 1,
+                                cell: 10
+                            }
+                        }
+                    ],
+                    laserEmitters: [
+                        {
+                            position: {
+                                row: 0,
+                                cell: 8
+                            },
+                            direction: 'down'
+                        }
+                    ]
+                }
+            },
         ];
     }
 

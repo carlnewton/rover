@@ -1,5 +1,5 @@
 class Canvas {
-    // #todo deal with aspect ratio, center alignment and a background (tiled?)
+    // #todo deal with aspect ratio, responsive canvas, center alignment and a background (tiled?)
     constructor(game) {
         this.game = game;
         this.tileSize = 64;
