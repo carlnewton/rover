@@ -13,7 +13,11 @@ class PushBlocks {
         }
 
         for (let pushBlock of this.game.level.map.interactables.pushBlocks) {
-            this.add(pushBlock.type, pushBlock.position.row, pushBlock.position.cell);
+            var orientation = 0;
+            if (pushBlock.orientation !== undefined) {
+                orientation = pushBlock.orientation;
+            }
+            this.add(pushBlock.type, pushBlock.position.row, pushBlock.position.cell, orientation);
         }
 
         this.checkAllPushBlocksHome();

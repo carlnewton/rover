@@ -103,7 +103,27 @@ class Canvas {
                     }
                 }
             }
-            this.drawTile(pushBlock.tile.colour, top, left);
+
+            if (pushBlock.tile.name === 'laser') {
+                var direction = 'down';
+                switch (pushBlock.orientation) {
+                    case 0:
+                        direction = 'down';
+                        break;
+                    case 90:
+                        direction = 'left';
+                        break;
+                    case 180:
+                        direction = 'up';
+                        break;
+                    case 270:
+                        direction = 'right';
+                        break;
+                }
+                this.drawLaserEmitter(pushBlock.tile.colour, pushBlock.tile.detailColour, top, left, direction);
+            } else {
+                this.drawTile(pushBlock.tile.colour, top, left);
+            }
         }
     }
 

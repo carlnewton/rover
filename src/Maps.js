@@ -524,6 +524,75 @@ class Maps {
                     ]
                 }
             },
+            // Level
+            {
+                levelID: 11,
+                map: [
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                ],
+                player: {
+                    position: {
+                        row: 5,
+                        cell: 0
+                    }
+                },
+                interactables: {
+                    pushBlocks: [
+                        {
+                            type: 'default',
+                            position: {
+                                row: 2,
+                                cell: 1
+                            }
+                        },
+                        {
+                            type: 'default',
+                            position: {
+                                row: 2,
+                                cell: 4
+                            }
+                        },
+                        {
+                            type: 'laser',
+                            position: {
+                                row: 1,
+                                cell: 8
+                            },
+                            orientation: 0
+                        },
+                    ],
+                    exits: [
+                        {
+                            position: {
+                                row: 5,
+                                cell: 10
+                            }
+                        }
+                    ],
+                    laserEmitters: [
+                        {
+                            position: {
+                                row: 5,
+                                cell: 5
+                            },
+                            direction: 'up'
+                        },
+                        {
+                            position: {
+                                row: 1,
+                                cell: 2
+                            },
+                            direction: 'down'
+                        }
+                    ]
+                }
+            },
         ];
     }
 

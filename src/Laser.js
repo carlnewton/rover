@@ -4,6 +4,7 @@ class Laser {
         this.emitters = [];
         this.lasers = [];
         this.addEmitters();
+        this.updateEmitterPushBlocks();
         this.emitLasers();
     }
 
@@ -14,7 +15,49 @@ class Laser {
 
         for (let emitter of this.game.level.map.interactables.laserEmitters) {
             emitter.id = this.emitters.length;
+            emitter.type = 'static';
             this.emitters.push(emitter);
+        }
+    }
+
+    updateEmitterPushBlocks() {
+        for (let emitter of this.emitters) {
+            if (emitter.type === 'pushBlock') {
+                let index = this.emitters.indexOf(emitter);
+                if(index !== -1) {
+                    this.emitters.splice(index, 1);
+                }
+            }
+        }
+        for (let pushBlock of this.game.pushBlocks.list) {
+            if (pushBlock.tile.name === 'laser') {
+                var direction = 'down';
+                switch (pushBlock.orientation) {
+                    case 0:
+                        direction = 'down';
+                        break;
+                    case 90:
+                        direction = 'left';
+                        break;
+                    case 180:
+                        direction = 'up';
+                        break;
+                    case 270:
+                        direction = 'right';
+                        break;
+                }
+                this.emitters.push(
+                    {
+                        id: this.emitters.length,
+                        type: 'pushBlock',
+                        position: {
+                            row: pushBlock.row,
+                            cell: pushBlock.cell
+                        },
+                        direction: direction
+                    },
+                );
+            }
         }
     }
 
@@ -26,6 +69,7 @@ class Laser {
     }
 
     laserExists(row, cell) {
+        this.updateEmitterPushBlocks();
         this.emitLasers();
 
         for (let laser of this.lasers) {

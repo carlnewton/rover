@@ -11,6 +11,11 @@ class PushBlockTypes {
                 id: 0,
                 name: 'default',
                 tileID: 0
+            },
+            {
+                id: 1,
+                name: 'laser',
+                tileID: 1
             }
         ];
     }
