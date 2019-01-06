@@ -75,21 +75,20 @@ class PushBlocks {
             return true;
         }
 
-        for (let pushBlock of this.list) {
-            if (!this.checkPushBlockHome(pushBlock)) {
+        for (let pushBlockHome of this.game.level.map.interactables.pushBlockHomes) {
+            var homeIsOccupied = false;
+            for (let pushBlock of this.list) {
+                if (pushBlock.row === pushBlockHome.position.row && pushBlock.cell === pushBlockHome.position.cell) {
+                    homeIsOccupied = true;
+                }
+            }
+            if (homeIsOccupied === false) {
                 this.allPushBlocksHome = false;
                 return false;
             }
         }
+
         this.allPushBlocksHome = true;
         return true;
-    }
-
-    checkPushBlockHome(pushBlock) {
-        for (let pushBlockHome of this.game.level.map.interactables.pushBlockHomes) {
-            if (pushBlockHome.position.row === pushBlock.row && pushBlockHome.position.cell === pushBlock.cell) {
-                return true;
-            }
-        }
     }
 }

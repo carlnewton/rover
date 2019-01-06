@@ -593,6 +593,77 @@ class Maps {
                     ]
                 }
             },
+            // Level
+            {
+                levelID: 12,
+                map: [
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
+                    [2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0],
+                    [1, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 0],
+                    
+                ],
+                player: {
+                    position: {
+                        row: 6,
+                        cell: 10
+                    }
+                },
+                interactables: {
+                    pushBlocks: [
+                        {
+                            type: 'laser',
+                            position: {
+                                row: 2,
+                                cell: 8
+                            },
+                            orientation: 0
+                        },
+                        {
+                            type: 'default',
+                            position: {
+                                row: 4,
+                                cell: 4
+                            }
+                        },
+                        {
+                            type: 'default',
+                            position: {
+                                row: 5,
+                                cell: 6
+                            }
+                        },
+                    ],
+                    pushBlockHomes: [
+                        {
+                            position: {
+                                row: 6,
+                                cell: 10
+                            }
+                        }
+                    ],
+                    laserEmitters: [
+                        {
+                            position: {
+                                row: 3,
+                                cell: 9
+                            },
+                            direction: 'left'
+                        }
+                    ],
+                    exits: [
+                        {
+                            position: {
+                                row: 6,
+                                cell: 0
+                            }
+                        }
+                    ],
+                }
+            },
         ];
     }
 
