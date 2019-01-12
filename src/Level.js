@@ -23,6 +23,10 @@ class Level {
             if (this.game.pushBlocks.getBlockByLocation(row, cell)) {
                 return false;
             }
+
+            if (this.game.pushBlocks.getBlocksMovingToLocation(row, cell).length > 0) {
+                return false;
+            }
         }
 
         if (this.map.interactables !== undefined && this.map.interactables.laserEmitters !== undefined) {
@@ -91,7 +95,6 @@ class Level {
     }
 
     complete() {
-        this.game.move.lock();
         this.game.queueNextLevel();
     }
 }

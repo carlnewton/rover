@@ -3,6 +3,8 @@ class PushBlock {
         this.id = id;
         this.row = row;
         this.cell = cell;
+        this.nextRow = null;
+        this.nextCell = null;
         this.tile = tile;
         this.orientation = orientation;
     }

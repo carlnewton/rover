@@ -31,33 +31,7 @@ class Canvas {
         // #todo #idea Animation class could contain methods that create range loops based on game tick to animate player shape.
         var playerTile = this.game.tiles.getPlayerTile(),
             top = this.game.player.position.row * this.tileSize,
-            left = this.game.player.position.cell * this.tileSize,
-            movement = this.game.move.getCurrentPosition('player', 0);
-
-        if (movement !== false) {
-            var top = movement.toRow * this.tileSize,
-                left = movement.toCell * this.tileSize;
-
-            if (movement.fromRow !== movement.toRow) {
-                var fromRow = movement.fromRow * this.tileSize,
-                    toRow = movement.toRow * this.tileSize;
-
-                if (fromRow > toRow) {
-                    top = fromRow - ((this.tileSize / 100) * movement.percentage)
-                } else {
-                    top = fromRow + ((this.tileSize / 100) * movement.percentage)
-                }
-            } else {
-                var fromCell = movement.fromCell * this.tileSize,
-                    toCell = movement.toCell * this.tileSize;
-
-                if (fromCell > toCell) {
-                    left = fromCell - ((this.tileSize / 100) * movement.percentage)
-                } else {
-                    left = fromCell + ((this.tileSize / 100) * movement.percentage)
-                }
-            }
-        }
+            left = this.game.player.position.cell * this.tileSize;
 
         this.drawTile(playerTile.colour, top, left);
     }
@@ -76,33 +50,7 @@ class Canvas {
     drawPushBlocks() {
         for (let pushBlock of this.game.pushBlocks.list) {
             var top = pushBlock.row * this.tileSize,
-                left = pushBlock.cell * this.tileSize,
-                movement = this.game.move.getCurrentPosition('pushBlock', pushBlock.id);
-
-            if (movement !== false) {
-                var top = movement.toRow * this.tileSize,
-                    left = movement.toCell * this.tileSize;
-
-                if (movement.fromRow !== movement.toRow) {
-                    var fromRow = movement.fromRow * this.tileSize,
-                        toRow = movement.toRow * this.tileSize;
-
-                    if (fromRow > toRow) {
-                        top = fromRow - ((this.tileSize / 100) * movement.percentage)
-                    } else {
-                        top = fromRow + ((this.tileSize / 100) * movement.percentage)
-                    }
-                } else {
-                    var fromCell = movement.fromCell * this.tileSize,
-                        toCell = movement.toCell * this.tileSize;
-
-                    if (fromCell > toCell) {
-                        left = fromCell - ((this.tileSize / 100) * movement.percentage)
-                    } else {
-                        left = fromCell + ((this.tileSize / 100) * movement.percentage)
-                    }
-                }
-            }
+                left = pushBlock.cell * this.tileSize;
 
             if (pushBlock.tile.name === 'laser') {
                 var direction = 'down';

@@ -1,86 +1,60 @@
 class Move {
 
-    // #todo #bug only put an entity to a position once it is finished moving there.
-    // at the moment, the entity is considered in place even while queued.
-
     constructor(game) {
         this.game = game;
         this.list = [];
-        this.locked = false;
+
     }
 
-    add(entityType, entityID, fromRow, fromCell, toRow, toCell, speed) {
-        if (this.locked) {
-            return false;
-        }
-
-        if (fromRow === toRow && fromCell === toCell) {
-            return false;
-        }
-
-        if (fromRow !== toRow && fromCell !== toCell) {
-            return false
-        }
-
-        var queued = false;
-        if (this.isMoving(entityType, entityID)) {
-            queued = true;
-        }
-
-        var entryID = this.list.length,
-            entry = new MoveEntry(
-                entryID,
-                this.game.tickFrame,
-                entityType,
-                entityID,
-                fromRow,
-                fromCell,
-                toRow,
-                toCell,
-                speed,
-                queued
-            );
+    add(entityType, entityID, direction) {
+        var moveID = this.getNewID(),
+            entry = {
+                id: moveID,
+                entityType: entityType,
+                entityID: entityID,
+                direction: direction
+            };
+        
         this.list.push(entry);
     }
 
-    lock() {
-        this.locked = true;
+    getNewID() {
+        var highestID = 0;
+        for (let entry of this.list) {
+            if (entry.id > highestID) {
+                highestID = entry.id;
+            }
+        }
+
+        return highestID + 1;
     }
 
-    unlock() {
-        this.locked = false;
+    move() {
+        this.movePlayer();
+        this.movePushBlocks();
     }
 
-    getCurrentPosition(entityType, entityID) {
-        var entry = this.getEarliestMovement(entityType, entityID);
-
-        if (entry === undefined) {
+    movePlayer() {
+        var movement = this.getEarliestMovement('player', 0);
+        if (movement === undefined) {
             return false;
         }
 
-        var currentFrame = this.game.tickFrame,
-            framesPassed = currentFrame - entry.frame,
-            percentage = entry.speed * framesPassed;
+        var playerMoved = this.game.player.move(movement.direction);
 
-        if (percentage + entry.speed >= 100) {
-            this.removeEntry(entry.id);
-        }        
-
-        return {
-            fromRow: entry.fromRow,
-            fromCell: entry.fromCell,
-            toRow: entry.toRow,
-            toCell: entry.toCell,
-            percentage: percentage
+        if (playerMoved === true || playerMoved === false) {
+            this.removeEntry(movement.id);
         }
     }
 
-    isMoving(entityType, entityID) {
-        if (this.getCurrentPosition(entityType, entityID) === false) {
-            return false;
-        }
+    movePushBlocks() {
+        for (let pushBlockMovement of this.getEarliestPushBlockMovements()) {
+            var pushBlockMoved = this.game.pushBlocks.moveBlock(pushBlockMovement.direction, pushBlockMovement.entityID);
 
-        return true;
+            if (pushBlockMoved === true || pushBlockMoved === false) {
+                this.removeEntry(pushBlockMovement.id);
+            }
+        }
     }
 
     getEarliestMovement(entityType, entityID) {
@@ -91,26 +65,31 @@ class Move {
         }
     }
 
-    unqueueEarliestMovement(entityType, entityID) {
-        for (let entry of this.list) {
-            if (entry.entityType === entityType && entry.entityID === entityID && entry.queued === true) {
-                entry.queued = false;
-                entry.frame = this.game.tickFrame;
+    getEarliestPushBlockMovements() {
+        var pushBlockIDs = [],
+            pushBlockMovements = [];
 
-                return true;
+        for (let entry of this.list) {
+            if (entry.entityType === 'pushBlock' && !pushBlockIDs.includes(entry.entityID)) {
+                pushBlockIDs.push(entry.entityID);
+                pushBlockMovements.push(entry);
             }
         }
+        return pushBlockMovements;
     }
 
     removeEntry(id) {
-        for(var entryID = 0; entryID < this.list.length; entryID++) {
-            var entry = this.list[entryID];
-            if(entry.id == id) {
+        var entryID = 0;
+        for (let entry of this.list) {
+            if (entry.id === id) {
                 this.list.splice(entryID, 1);
-                this.unqueueEarliestMovement(entry.entityType, entry.entityID);
-
                 return true;
             }
+            entryID++;
         }
+    }
+
+    clear() {
+        this.list = [];
     }
 }

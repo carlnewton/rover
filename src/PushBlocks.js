@@ -23,11 +23,11 @@ class PushBlocks {
         this.checkAllPushBlocksHome();
     }
 
-    add(type, row, cell) {
+    add(type, row, cell, orientation) {
         var id = this.list.length,
             pushBlockType = this.game.pushBlockTypes.getByName(type),
             tile = this.game.tiles.getByID('pushBlock', pushBlockType.tileID),
-            pushBlock = new PushBlock(id, row, cell, tile);
+            pushBlock = new PushBlock(id, row, cell, tile, orientation);
 
         this.list.push(pushBlock);
     }
@@ -40,33 +40,122 @@ class PushBlocks {
         }
     }
 
-    moveBlock(direction, id) {
+    getBlocksMovingToLocation(row, cell) {
+        var pushBlocks = [];
         for (let pushBlock of this.list) {
-            if (pushBlock.id === id) {
-                var newPosition = this.game.level.getNextAvailablePositionForDirection(direction, pushBlock.row, pushBlock.cell, 'pushBlock');
-                if (newPosition.row === pushBlock.row && newPosition.cell === pushBlock.cell) {
-                    return false;
-                }
-
-                if (this.getBlockByLocation(newPosition.row, newPosition.cell)) {
-                    return false;
-                }
-
-                this.game.move.add('pushBlock', pushBlock.id, pushBlock.row, pushBlock.cell, newPosition.row, newPosition.cell, this.game.player.speed);
-                pushBlock.row = newPosition.row;
-                pushBlock.cell = newPosition.cell;
-
-                if (this.checkAllPushBlocksHome()) {
-                    this.game.exit.enable();
-                } else {
-                    this.game.exit.disable();
-                }
-
-                return true;
+            if (pushBlock.nextRow === row && pushBlock.nextCell === cell) {
+                pushBlocks.push(pushBlock);
             }
         }
 
-        return false;
+        return pushBlocks;
+    }
+
+    moveBlock(direction, id) {
+        var pushBlock = this.getBlockByID(id),
+            increment = (this.game.player.speed * this.game.delta) / 1000;
+
+        if (!pushBlock) {
+            return false;
+        }
+
+        var newPosition = this.game.level.getNextAvailablePositionForDirection(direction, Math.floor(pushBlock.row), Math.floor(pushBlock.cell), 'pushBlock');
+
+        if (pushBlock.nextRow === null && pushBlock.nextCell === null) {
+            if (!this.blockCanMove(direction, id)) {
+                return false;
+            }
+            pushBlock.nextRow = newPosition.row;
+            pushBlock.nextCell = newPosition.cell;
+        }
+
+        switch (direction) {
+            case 'up':
+                if (Math.floor(pushBlock.row - increment) < pushBlock.nextRow) {
+                    pushBlock.row = pushBlock.nextRow;
+                    pushBlock.nextRow = null;
+                    pushBlock.nextCell = null;
+                    this.checkStatus();
+                    return true;
+                }
+
+                pushBlock.row -= increment;
+                break;
+            case 'down':
+                if (Math.ceil(pushBlock.row + increment) > pushBlock.nextRow) {
+                    pushBlock.row = pushBlock.nextRow
+                    pushBlock.nextRow = null;
+                    pushBlock.nextCell = null;
+                    this.checkStatus();
+                    return true;
+                }
+
+                pushBlock.row += increment;
+                break;
+            case 'left':
+                if (Math.floor(pushBlock.cell - increment) < pushBlock.nextCell) {
+                    pushBlock.cell = pushBlock.nextCell
+                    pushBlock.nextRow = null;
+                    pushBlock.nextCell = null;
+                    this.checkStatus();
+                    return true;
+                }
+
+                pushBlock.cell -= increment;
+                break;
+            case 'right':
+                if (Math.ceil(pushBlock.cell + increment) > pushBlock.nextCell) {
+                    pushBlock.cell = pushBlock.nextCell
+                    pushBlock.nextRow = null;
+                    pushBlock.nextCell = null;
+                    this.checkStatus();
+                    return true;
+                }
+
+                pushBlock.cell += increment;
+                break;
+        }
+    }
+
+    checkStatus() {
+        this.game.laser.updateEmitterPushBlocks();
+        this.game.laser.emitLasers();
+        if (this.checkAllPushBlocksHome()) {
+            this.game.exit.enable();
+        } else {
+            this.game.exit.disable();
+        }
+    }
+
+    getBlockByID(id) {
+        for (let pushBlock of this.list) {
+            if (pushBlock.id === id) {
+                return pushBlock;
+            }
+        }
+    }
+
+    blockCanMove(direction, id) {
+        var pushBlock = this.getBlockByID(id);
+
+        if (!pushBlock) {
+            return false;
+        }
+
+        var newPosition = this.game.level.getNextAvailablePositionForDirection(direction, pushBlock.row, pushBlock.cell, 'pushBlock');
+        if (newPosition.row === pushBlock.row && newPosition.cell === pushBlock.cell) {
+            return false;
+        }
+
+        if (this.getBlockByLocation(newPosition.row, newPosition.cell)) {
+            return false;
+        }
+
+        if (this.getBlocksMovingToLocation(newPosition.row, newPosition.cell).length > 0) {
+            return false;
+        }
+
+        return true;
     }
 
     checkAllPushBlocksHome() {

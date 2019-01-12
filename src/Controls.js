@@ -16,22 +16,22 @@ class Controls {
             // `w` or up arrow
             case 87:
             case 38:
-                this.game.player.move('up');
+                this.game.move.add('player', 0, 'up');
                 break;
             // `s` or down arrow
             case 83:
             case 40:
-                this.game.player.move('down');
+                this.game.move.add('player', 0, 'down');
                 break;
             // `a` or left arrow
             case 65:
             case 37:
-                this.game.player.move('left');
+                this.game.move.add('player', 0, 'left');
                 break;
             // `d` or right arrow
             case 68:
             case 39:
-                this.game.player.move('right');
+                this.game.move.add('player', 0, 'right');
                 break;
             // space bar
             case 32:

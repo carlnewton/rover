@@ -8,7 +8,6 @@ gulp.task('build', function() {
             './src/Maps.js',
             './src/Tiles.js',
             './src/PushBlockTypes.js',
-            './src/MoveEntry.js',
             './src/Move.js',
             './src/Level.js',
             './src/Player.js',

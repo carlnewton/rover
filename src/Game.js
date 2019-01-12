@@ -14,22 +14,27 @@ class Game {
         this.canvas = new Canvas(this);
 
         this.tickFrame = 0;
+        this.lastTickUpdate = Date.now();
+        this.delta = 0;
+
         this.nextLevelQueued = false;
     }
 
     run() {
         var _this = this;
-        this.loop = setInterval(function() {_this.tick()}, 42);
+        this.loop = setInterval(function() {_this.tick()}, 0);
     }
 
     tick() {
+        var now = Date.now();
+        this.delta = now - this.lastTickUpdate;
+        this.lastTickUpdate = now;
+
         this.tickFrame++;
+        this.move.move();
         this.canvas.drawFrame();
 
-        if (
-            this.nextLevelQueued
-            && this.move.list.length === 0
-        ) {
+        if (this.nextLevelQueued) {
             this.loadNextLevel();
         }
     }
