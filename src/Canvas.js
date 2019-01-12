@@ -1,5 +1,4 @@
 class Canvas {
-    // #todo deal with aspect ratio, responsive canvas, center alignment and a background (tiled?)
     constructor(game) {
         this.game = game;
         this.tileSize = 64;
@@ -8,9 +7,46 @@ class Canvas {
         this.setDimensions();
     }
 
+    getPlayableAreaDimensions() {
+        var map = this.game.level.map.map,
+            height = map.length * this.tileSize,
+            width = map[0].length * this.tileSize
+
+        return {
+            width: width,
+            height: height
+        }
+    }
+
+    getLeftPadding() {
+        return this.c.width / 2 - this.getPlayableAreaDimensions().width / 2;
+    }
+
+    getTopPadding() {
+        return this.c.height / 2 - this.getPlayableAreaDimensions().height / 2;
+    }
+
     setDimensions() {
         this.c.height = this.c.clientHeight;
         this.c.width = this.c.clientWidth;
+        this.tileSize = 64;
+
+        if (
+            this.getPlayableAreaDimensions().width > this.c.width
+            || this.getPlayableAreaDimensions().height > this.c.height
+        ) {
+            var map = this.game.level.map.map,
+                heightTiles = map.length,
+                widthTiles = map[0].length,
+                newWidth = this.c.width / widthTiles,
+                newHeight = this.c.height / heightTiles;
+
+                if (newHeight < newWidth && newHeight < this.tileSize) {
+                    this.tileSize = Math.floor(newHeight);
+                } else if (newWidth < this.tileSize) {
+                    this.tileSize = Math.floor(newWidth);
+                }
+        }
     }
 
     drawFrame() {
@@ -18,13 +54,23 @@ class Canvas {
         this.drawPlayer();
     }
 
-
     drawLevel() {
+        this.drawBackground();
         this.drawMap();
         this.drawExits();
         this.drawPushBlockHomes();
         this.drawLasers();
         this.drawPushBlocks();
+    }
+
+    drawBackground() {
+        this.ctx.fillStyle = this.game.tiles.getByID('map', 1).colour;
+        this.ctx.fillRect(
+            0,
+            0,
+            this.c.clientWidth, 
+            this.c.clientHeight
+        );
     }
 
     drawPlayer() {
@@ -133,6 +179,8 @@ class Canvas {
     drawLaserEmitter(colour, detailColour, top, left, direction) {
         this.drawTile(colour, top, left);
 
+        top += this.getTopPadding();
+        left += this.getLeftPadding();
         this.ctx.fillStyle = detailColour;
         this.ctx.beginPath();
         switch(direction) {
@@ -176,14 +224,16 @@ class Canvas {
     drawTile(colour, top, left) {
         this.ctx.fillStyle = colour;
         this.ctx.fillRect(
-            left,
-            top,
+            left + this.getLeftPadding(),
+            top + this.getTopPadding(),
             this.tileSize, 
             this.tileSize
         );
     }
 
     drawTileLine(direction, thickness, colour, top, left) {
+        top += this.getTopPadding();
+        left += this.getLeftPadding();
         this.ctx.strokeStyle = colour;
         this.ctx.lineWidth = thickness;
         this.ctx.beginPath();
@@ -201,8 +251,8 @@ class Canvas {
         this.ctx.strokeStyle = colour;
         this.ctx.lineWidth = thickness;
         this.ctx.strokeRect(
-            left + (thickness),
-            top + (thickness),
+            this.getLeftPadding() + left + (thickness),
+            this.getTopPadding() + top + (thickness),
             this.tileSize - (thickness * 2), 
             this.tileSize - (thickness * 2)
         );
