@@ -664,6 +664,108 @@ class Maps {
                     ],
                 }
             },
+            // Level
+            {
+                levelID: 13,
+                map: [
+                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                ],
+                player: {
+                    position: {
+                        row: 4,
+                        cell: 3
+                    }
+                },
+                interactables: {
+                    pushBlocks: [
+                        {
+                            type: 'default',
+                            position: {
+                                row: 3,
+                                cell: 3
+                            }
+                        },
+                        {
+                            type: 'laser',
+                            position: {
+                                row: 1,
+                                cell: 5
+                            },
+                            orientation: 0
+                        },
+                        {
+                            type: 'laser',
+                            position: {
+                                row: 5,
+                                cell: 5
+                            },
+                            orientation: 90
+                        },
+                        {
+                            type: 'laser',
+                            position: {
+                                row: 1,
+                                cell: 1
+                            },
+                            orientation: 270
+                        },
+                        {
+                            type: 'laser',
+                            position: {
+                                row: 5,
+                                cell: 1
+                            },
+                            orientation: 180
+                        },
+                    ],
+                    pushBlockHomes: [
+                        {
+                            position: {
+                                row: 2,
+                                cell: 2
+                            }
+                        },
+                        {
+                            position: {
+                                row: 4,
+                                cell: 4
+                            }
+                        },
+                        {
+                            position: {
+                                row: 4,
+                                cell: 2
+                            }
+                        },
+                        {
+                            position: {
+                                row: 2,
+                                cell: 4
+                            }
+                        },
+                        {
+                            position: {
+                                row: 3,
+                                cell: 3
+                            }
+                        },
+                    ],
+                    exits: [
+                        {
+                            position: {
+                                row: 3,
+                                cell: 7
+                            }
+                        }
+                    ]
+                }
+            },
         ];
     }
 

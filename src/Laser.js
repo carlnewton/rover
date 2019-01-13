@@ -14,21 +14,34 @@ class Laser {
         }
 
         for (let emitter of this.game.level.map.interactables.laserEmitters) {
-            emitter.id = this.emitters.length;
+            emitter.id = this.getNewEmitterID();
             emitter.type = 'static';
             this.emitters.push(emitter);
         }
     }
 
-    updateEmitterPushBlocks() {
-        for (let emitter of this.emitters) {
-            if (emitter.type === 'pushBlock') {
-                let index = this.emitters.indexOf(emitter);
-                if(index !== -1) {
-                    this.emitters.splice(index, 1);
-                }
+    removeEmittersByType(type) {
+        var emitterID = this.emitters.length
+        while (emitterID--) {
+            if (this.emitters[emitterID].type === 'pushBlock') {
+                this.emitters.splice(emitterID, 1);
             }
         }
+    }
+
+    getNewEmitterID() {
+        var highestID = 0;
+        for (let emitter of this.emitters) {
+            if (emitter.id > highestID) {
+                highestID = emitter.id;
+            }
+        }
+
+        return highestID + 1;
+    }
+
+    updateEmitterPushBlocks() {
+        this.removeEmittersByType('pushBlock');
         for (let pushBlock of this.game.pushBlocks.list) {
             if (pushBlock.tile.name === 'laser') {
                 var direction = 'down';
@@ -48,7 +61,7 @@ class Laser {
                 }
                 this.emitters.push(
                     {
-                        id: this.emitters.length,
+                        id: this.getNewEmitterID(),
                         type: 'pushBlock',
                         position: {
                             row: pushBlock.row,
