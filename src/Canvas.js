@@ -93,6 +93,38 @@ class Canvas {
         }
     }
 
+    drawLevelComplete() {
+        var timer = this.game.timer.count('levelComplete', 1000);
+
+        if (timer.completed === true) {
+            return true;
+        }
+
+        this.ctx.fillStyle = 'rgba(255, 255, 255, ' + timer.elapsedPercent / 100 + ')';
+        this.ctx.fillRect(
+            0,
+            0,
+            this.c.clientWidth, 
+            this.c.clientHeight
+        );
+    }
+
+    drawLevelBegin() {
+        var timer = this.game.timer.count('levelBegin', 1000);
+
+        if (timer.completed === true) {
+            return true;
+        }
+
+        this.ctx.fillStyle = 'rgba(255, 255, 255, ' + timer.remainingPercent / 100 + ')';
+        this.ctx.fillRect(
+            0,
+            0,
+            this.c.clientWidth, 
+            this.c.clientHeight
+        );
+    }
+
     drawPushBlocks() {
         for (let pushBlock of this.game.pushBlocks.list) {
             var top = pushBlock.row * this.tileSize,

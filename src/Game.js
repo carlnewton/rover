@@ -3,6 +3,7 @@ class Game {
         this.maps = new Maps();
         this.tiles = new Tiles();
         this.pushBlockTypes = new PushBlockTypes();
+        this.timer = new Timer();
 
         this.move = new Move(this);
         this.level = new Level(this);
@@ -37,13 +38,23 @@ class Game {
         if (this.nextLevelQueued) {
             this.loadNextLevel();
         }
+
+        if (this.level.begin === true) {
+            if (this.canvas.drawLevelBegin() === true) {
+                this.level.begin = false;
+            }
+        }
     }
 
     queueNextLevel() {
+        this.controls.locked = true;
         this.nextLevelQueued = true;
     }
 
     loadNextLevel() {
+        if (this.canvas.drawLevelComplete() !== true) {
+            return;
+        }
         this.nextLevelQueued = false;
         var nextLevelID = this.level.map.levelID + 1;
         if (!this.maps.getByLevelID(nextLevelID)) {
@@ -65,5 +76,7 @@ class Game {
         this.exit = new Exit(this);
         this.laser = new Laser(this);
         this.canvas = new Canvas(this);
+
+        this.controls.locked = false;
     }
 }

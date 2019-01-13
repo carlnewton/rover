@@ -2,6 +2,7 @@ class Level {
     constructor(game, levelID=1) {
         this.game = game;
         this.map = this.game.maps.getByLevelID(levelID);
+        this.begin = true;
     }
 
     locationAvailable(row, cell, availableFor) {

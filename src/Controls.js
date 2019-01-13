@@ -2,6 +2,7 @@ class Controls {
     constructor(game) {
         this.game = game;
         this.listen();
+        this.locked = false;
     }
 
     listen() {
@@ -12,6 +13,10 @@ class Controls {
     }
 
     keyDown(key) {
+        if (this.locked === true) {
+            return;
+        }
+        
         switch (key.keyCode) {
             // `w` or up arrow
             case 87:
@@ -39,7 +44,7 @@ class Controls {
                 break;
             // `]`
             case 221: // #todo remove this 
-                this.game.loadNextLevel();
+                this.game.queueNextLevel();
                 break;
         } 
     }
