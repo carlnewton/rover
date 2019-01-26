@@ -3,7 +3,7 @@ class Timer {
         this.list = [];
     }
 
-    count(reference, length = 0) {
+    count(reference, length = 0, loop = false) {
         var timer = this.get(reference);
         if (timer === undefined) {
 
@@ -16,6 +16,7 @@ class Timer {
                 remaining: length,
                 remainingPercent: 100,
                 completed: false,
+                backwards: false
             }
             this.list.push(timer);
 
@@ -28,12 +29,41 @@ class Timer {
         timer.remainingPercent = Math.round(timer.remaining / timer.length * 100);
 
         if (timer.elapsed >= timer.length) {
-            timer.elapsed = timer.length;
-            timer.elapsedPercent = 100;
-            timer.remaining = 0;
-            timer.remainingPercent = 0;
-            timer.completed = true;
-            this.remove(timer.reference);
+            if (loop === false) {
+                timer.elapsed = timer.length;
+                timer.elapsedPercent = 100;
+                timer.remaining = 0;
+                timer.remainingPercent = 0;
+                timer.completed = true;
+                this.remove(timer.reference);
+            } else {
+                timer.start = Date.now();
+                timer.elapsed = 0;
+                timer.elapsedPercent = 0;
+                timer.remaining = length;
+                timer.remainingPercent = 100;
+                timer.completed = false;
+                if (timer.backwards === true) {
+                    timer.backwards = false;
+                } else {
+                    timer.backwards = true;
+                }
+                
+            }
+        }
+
+        if (timer.backwards === true) {
+            return {
+                reference: timer.reference,
+                length: timer.length,
+                start: timer.start,
+                elapsed: timer.remaining,
+                elapsedPercent: timer.remainingPercent,
+                remaining: timer.elapsed,
+                remainingPercent: timer.elapsedPercent,
+                completed: false,
+                backwards: true
+            }
         }
 
         return timer;

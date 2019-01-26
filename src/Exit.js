@@ -21,7 +21,7 @@ class Exit {
             }
         }
     }
-
+    
     enable() {
         this.enabled = true;
         this.tile = this.game.tiles.exitTiles[0];

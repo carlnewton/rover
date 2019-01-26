@@ -130,25 +130,31 @@ class Canvas {
             var top = pushBlock.row * this.tileSize,
                 left = pushBlock.cell * this.tileSize;
 
-            if (pushBlock.tile.name === 'laser') {
-                var direction = 'down';
-                switch (pushBlock.orientation) {
-                    case 0:
-                        direction = 'down';
-                        break;
-                    case 90:
-                        direction = 'left';
-                        break;
-                    case 180:
-                        direction = 'up';
-                        break;
-                    case 270:
-                        direction = 'right';
-                        break;
-                }
-                this.drawLaserEmitter(pushBlock.tile.colour, pushBlock.tile.detailColour, top, left, direction);
-            } else {
-                this.drawTile(pushBlock.tile.colour, top, left);
+            switch (pushBlock.tile.name) {
+                case 'laser':
+                    var direction = 'down';
+                    switch (pushBlock.orientation) {
+                        case 0:
+                            direction = 'down';
+                            break;
+                        case 90:
+                            direction = 'left';
+                            break;
+                        case 180:
+                            direction = 'up';
+                            break;
+                        case 270:
+                            direction = 'right';
+                            break;
+                    }
+                    this.drawLaserEmitter(pushBlock.tile.colour, top, left, direction);
+                    break;
+                case 'laserCapture':
+                    this.drawLaserCapture(pushBlock.tile.colour, top, left, pushBlock.active);
+                    break;
+                default:
+                    this.drawTile(pushBlock.tile.colour, top, left);
+                    break;
             }
         }
     }
@@ -184,7 +190,7 @@ class Canvas {
 
     drawLaserLines() {
         for (let laser of this.game.laser.lasers) {
-            this.drawTileLine(laser.direction, this.tileSize / 11, '#c00', laser.row * this.tileSize, laser.cell * this.tileSize);
+            this.drawTileLine(laser.direction, this.tileSize / 11, this.getLaserColour(), laser.row * this.tileSize, laser.cell * this.tileSize);
         }
     }
 
@@ -200,7 +206,7 @@ class Canvas {
                 left = laserEmitter.position.cell * this.tileSize,
                 tile = this.game.tiles.laserTiles[0];
 
-            this.drawLaserEmitter(tile.colour, tile.detailColour, top, left, laserEmitter.direction);
+            this.drawLaserEmitter(tile.colour, top, left, laserEmitter.direction);
         }
     }
 
@@ -208,33 +214,136 @@ class Canvas {
         return  percentage / 100 * this.tileSize;
     }
 
-    drawLaserEmitter(colour, detailColour, top, left, direction) {
-        this.drawTile(colour, top, left);
-
+    drawLaserCapture(colour, top, left, active) {
         top += this.getTopPadding();
         left += this.getLeftPadding();
-        this.ctx.fillStyle = detailColour;
+        this.ctx.fillStyle = this.getLaserColour();
+
+        if (active === true) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(left + this.tileSizePercent(50), top + this.tileSizePercent(35));
+            this.ctx.lineTo(left + this.tileSizePercent(65), top + this.tileSizePercent(50));
+            this.ctx.lineTo(left + this.tileSizePercent(50), top + this.tileSizePercent(65));
+            this.ctx.lineTo(left + this.tileSizePercent(35), top + this.tileSizePercent(50));
+            this.ctx.fill();
+        }
+        
+        this.ctx.fillStyle = colour;
+
         this.ctx.beginPath();
+        this.ctx.moveTo(left, top);
+        this.ctx.lineTo(left + this.tileSizePercent(80), top);
+        this.ctx.lineTo(left, top + this.tileSizePercent(80));
+        this.ctx.fill();
+
+        this.ctx.beginPath();
+        this.ctx.moveTo(left + this.tileSize, top);
+        this.ctx.lineTo(left + this.tileSizePercent(20), top);
+        this.ctx.lineTo(left + this.tileSize, top + this.tileSizePercent(80));
+        this.ctx.fill();
+
+        this.ctx.beginPath();
+        this.ctx.moveTo(left, top + this.tileSize);
+        this.ctx.lineTo(left + this.tileSizePercent(80), top + this.tileSize);
+        this.ctx.lineTo(left, top + this.tileSizePercent(20));
+        this.ctx.fill();
+
+        this.ctx.beginPath();
+        this.ctx.moveTo(left + this.tileSize, top + this.tileSize);
+        this.ctx.lineTo(left + this.tileSizePercent(20), top + this.tileSize);
+        this.ctx.lineTo(left + this.tileSize, top + this.tileSizePercent(20));
+        this.ctx.fill();
+    }
+
+    getLaserColour() {
+        var timer = this.game.timer.count('laserColour', 1000, true),
+            opacity = timer.elapsedPercent / 100;
+
+        opacity = 0.5 + opacity / 6;
+
+        return 'rgba(204, 0, 0, ' + opacity + ')';
+    }
+
+    drawLaserEmitter(colour, top, left, direction) {
+        top += this.getTopPadding();
+        left += this.getLeftPadding();
+
         switch(direction) {
             case 'up':
-                this.ctx.moveTo(left + this.tileSizePercent(50), top + this.tileSizePercent(20));
-                this.ctx.lineTo(left + this.tileSizePercent(33), top);
+                this.ctx.fillStyle = this.getLaserColour();
+                this.ctx.beginPath();
+                this.ctx.moveTo(left + this.tileSizePercent(33), top);
+                this.ctx.lineTo(left + this.tileSizePercent(50), top + this.tileSizePercent(20));
                 this.ctx.lineTo(left + this.tileSizePercent(66), top);
+                this.ctx.fill();
+
+                this.ctx.fillStyle = colour;
+                this.ctx.beginPath();
+
+                this.ctx.moveTo(left, top);
+                this.ctx.lineTo(left, top + this.tileSize);
+                this.ctx.lineTo(left + this.tileSize, top + this.tileSize);
+                this.ctx.lineTo(left + this.tileSize, top);
+                this.ctx.lineTo(left + this.tileSizePercent(66), top);
+                this.ctx.lineTo(left + this.tileSizePercent(50), top + this.tileSizePercent(20));
+                this.ctx.lineTo(left + this.tileSizePercent(33), top);
                 break;
             case 'down':
-                this.ctx.moveTo(left + this.tileSizePercent(50), top + this.tileSizePercent(80));
-                this.ctx.lineTo(left + this.tileSizePercent(33), top + this.tileSize);
+                this.ctx.fillStyle = this.getLaserColour();
+                this.ctx.beginPath();
+                this.ctx.moveTo(left + this.tileSizePercent(33), top + this.tileSize);
+                this.ctx.lineTo(left + this.tileSizePercent(50), top + this.tileSizePercent(80));
                 this.ctx.lineTo(left + this.tileSizePercent(66), top + this.tileSize);
+                this.ctx.fill();
+
+                this.ctx.fillStyle = colour;
+                this.ctx.beginPath();
+                
+                this.ctx.moveTo(left, top);
+                this.ctx.lineTo(left, top + this.tileSize);
+                this.ctx.lineTo(left + this.tileSizePercent(33), top + this.tileSize);
+                this.ctx.lineTo(left + this.tileSizePercent(50), top + this.tileSizePercent(80));
+                this.ctx.lineTo(left + this.tileSizePercent(66), top + this.tileSize);
+                this.ctx.lineTo(left + this.tileSize, top + this.tileSize);
+                this.ctx.lineTo(left + this.tileSize, top);
                 break;
             case 'left':
-                this.ctx.moveTo(left + this.tileSizePercent(20), top + this.tileSizePercent(50));
-                this.ctx.lineTo(left, top + this.tileSizePercent(33));
+                this.ctx.fillStyle = this.getLaserColour();
+                this.ctx.beginPath();
+                this.ctx.moveTo(left, top + this.tileSizePercent(33));
+                this.ctx.lineTo(left + this.tileSizePercent(20), top + this.tileSizePercent(50));
                 this.ctx.lineTo(left, top + this.tileSizePercent(66));
+                this.ctx.fill();
+
+                this.ctx.fillStyle = colour;
+                this.ctx.beginPath();
+
+                this.ctx.moveTo(left, top);
+                this.ctx.lineTo(left, top + this.tileSizePercent(33));
+                this.ctx.lineTo(left + this.tileSizePercent(20), top + this.tileSizePercent(50));
+                this.ctx.lineTo(left, top + this.tileSizePercent(66));
+                this.ctx.lineTo(left, top + this.tileSize);
+                this.ctx.lineTo(left + this.tileSize, top + this.tileSize);
+                this.ctx.lineTo(left + this.tileSize, top);
                 break;
             case 'right':
-                this.ctx.moveTo(left + this.tileSizePercent(80), top + this.tileSizePercent(50));
-                this.ctx.lineTo(left + this.tileSize, top + this.tileSizePercent(33));
+                this.ctx.fillStyle = this.getLaserColour();
+                this.ctx.beginPath();
+                this.ctx.moveTo(left + this.tileSize, top + this.tileSizePercent(33));
+                this.ctx.lineTo(left + this.tileSizePercent(80), top + this.tileSizePercent(50));
                 this.ctx.lineTo(left + this.tileSize, top + this.tileSizePercent(66));
+                this.ctx.fill();
+
+                this.ctx.fillStyle = colour;
+                this.ctx.beginPath();
+
+                this.ctx.moveTo(left, top);
+                this.ctx.lineTo(left, top + this.tileSize);
+                this.ctx.lineTo(left + this.tileSize, top + this.tileSize);
+                this.ctx.lineTo(left + this.tileSize, top + this.tileSizePercent(66));
+                this.ctx.lineTo(left + this.tileSizePercent(80), top + this.tileSizePercent(50));
+                this.ctx.lineTo(left + this.tileSize, top + this.tileSizePercent(33));
+                this.ctx.lineTo(left + this.tileSize, top);
                 break;
         }
         this.ctx.fill();
@@ -264,6 +373,7 @@ class Canvas {
     }
 
     drawTileLine(direction, thickness, colour, top, left) {
+
         top += this.getTopPadding();
         left += this.getLeftPadding();
         this.ctx.strokeStyle = colour;

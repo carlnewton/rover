@@ -16,6 +16,11 @@ class PushBlockTypes {
                 id: 1,
                 name: 'laser',
                 tileID: 1
+            },
+            {
+                id: 2,
+                name: 'laserCapture',
+                tileID: 2
             }
         ];
     }

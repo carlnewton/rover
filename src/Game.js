@@ -19,6 +19,8 @@ class Game {
         this.delta = 0;
 
         this.nextLevelQueued = false;
+
+        this.level.initialise();
     }
 
     run() {
@@ -78,5 +80,6 @@ class Game {
         this.canvas = new Canvas(this);
 
         this.controls.locked = false;
+        this.level.initialise();
     }
 }

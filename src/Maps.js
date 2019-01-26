@@ -766,6 +766,53 @@ class Maps {
                     ]
                 }
             },
+            // Level
+            {
+                levelID: 14,
+                map: [
+                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 1, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                ],
+                player: {
+                    position: {
+                        row: 5,
+                        cell: 4
+                    }
+                },
+                interactables: {
+                    pushBlocks: [
+                        {
+                            type: 'laserCapture',
+                            position: {
+                                row: 1,
+                                cell: 4
+                            }
+                        }
+                    ],
+                    exits: [
+                        {
+                            position: {
+                                row: 5,
+                                cell: 4
+                            }
+                        }
+                    ],
+                    laserEmitters: [
+                        {
+                            position: {
+                                row: 3,
+                                cell: 6
+                            },
+                            direction: 'left'
+                        }
+                    ],
+                }
+            },
         ];
     }
 

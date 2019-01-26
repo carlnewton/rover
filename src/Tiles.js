@@ -55,6 +55,15 @@ class Tiles {
                 obstructsPlayer: true,
                 obstructsPushBlock: true,
                 obstructsLaser: true,
+            },
+            {
+                id: 2,
+                name: 'laserCapture',
+                colour: '#eb7b59',
+                detailColour: '#c00',
+                obstructsPlayer: true,
+                obstructsPushBlock: true,
+                obstructsLaser: true,
             }
         ];
 

@@ -19,8 +19,6 @@ class PushBlocks {
             }
             this.add(pushBlock.type, pushBlock.position.row, pushBlock.position.cell, orientation);
         }
-
-        this.checkAllPushBlocksHome();
     }
 
     add(type, row, cell, orientation) {
@@ -120,11 +118,20 @@ class PushBlocks {
     checkStatus() {
         this.game.laser.updateEmitterPushBlocks();
         this.game.laser.emitLasers();
-        if (this.checkAllPushBlocksHome()) {
+        if (this.checkAllPushBlocksHome() && this.checkAllLaserCapturesActive()) {
             this.game.exit.enable();
         } else {
             this.game.exit.disable();
         }
+    }
+
+    checkAllLaserCapturesActive() {
+        for (let pushBlock of this.list) {
+            if (pushBlock.tile.name === 'laserCapture' && pushBlock.active === false) {
+                return false;
+            }
+        }
+        return true;
     }
 
     getBlockByID(id) {
@@ -132,6 +139,12 @@ class PushBlocks {
             if (pushBlock.id === id) {
                 return pushBlock;
             }
+        }
+    }
+
+    deactivateAll() {
+         for (let pushBlock of this.list) {
+            pushBlock.active = false;
         }
     }
 

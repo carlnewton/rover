@@ -98,4 +98,8 @@ class Level {
     complete() {
         this.game.queueNextLevel();
     }
+
+    initialise() {
+        this.game.pushBlocks.checkStatus();
+    }
 }

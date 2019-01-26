@@ -7,5 +7,6 @@ class PushBlock {
         this.nextCell = null;
         this.tile = tile;
         this.orientation = orientation;
+        this.active = false;
     }
 }

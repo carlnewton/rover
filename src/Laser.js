@@ -75,6 +75,7 @@ class Laser {
     }
 
     emitLasers() {
+        this.game.pushBlocks.deactivateAll();
         this.lasers = [];
         for (let emitter of this.emitters) {
             this.emitLaserFromEmitter(emitter.id);
@@ -114,6 +115,12 @@ class Laser {
         }
 
         if (!this.game.level.locationAvailable(row, cell, 'laser')) {
+            var pushBlock = this.game.pushBlocks.getBlockByLocation(row, cell);
+
+            if (pushBlock !== undefined && pushBlock.tile.name === 'laserCapture') {
+                pushBlock.active = true;
+            }
+
             return false;
         }
 
