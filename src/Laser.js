@@ -117,8 +117,42 @@ class Laser {
         if (!this.game.level.locationAvailable(row, cell, 'laser')) {
             var pushBlock = this.game.pushBlocks.getBlockByLocation(row, cell);
 
-            if (pushBlock !== undefined && pushBlock.tile.name === 'laserCapture') {
-                pushBlock.active = true;
+            if (pushBlock !== undefined) {
+                if (pushBlock.tile.name === 'laserCapture') {
+                    pushBlock.active = true;
+                }
+
+                if (pushBlock.tile.name === 'mirror') {
+                    if ((direction === 'up' || direction === 'right') && pushBlock.orientation === 0) {
+                        pushBlock.active = true;
+                        if (direction === 'right') {
+                            this.emitLaserFrom(row, cell, 'down')
+                        } else if (direction === 'up') {
+                            this.emitLaserFrom(row, cell, 'left')
+                        }
+                    } else if ((direction === 'down' || direction === 'right') && pushBlock.orientation === 90) {
+                        pushBlock.active = true;
+                        if (direction === 'right') {
+                            this.emitLaserFrom(row, cell, 'up')
+                        } else if (direction === 'down') {
+                            this.emitLaserFrom(row, cell, 'left')
+                        }
+                    } else if ((direction === 'down' || direction === 'left') && pushBlock.orientation === 180) {
+                        pushBlock.active = true;
+                        if (direction === 'left') {
+                            this.emitLaserFrom(row, cell, 'up')
+                        } else if (direction === 'down') {
+                            this.emitLaserFrom(row, cell, 'right')
+                        }
+                    } else if ((direction === 'up' || direction === 'left') && pushBlock.orientation === 270) {
+                        pushBlock.active = true;
+                        if (direction === 'left') {
+                            this.emitLaserFrom(row, cell, 'down')
+                        } else if (direction === 'up') {
+                            this.emitLaserFrom(row, cell, 'right')
+                        }
+                    }
+                }
             }
 
             return false;

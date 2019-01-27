@@ -46,6 +46,8 @@ class Game {
                 this.level.begin = false;
             }
         }
+
+        this.player.checkAlive();
     }
 
     queueNextLevel() {

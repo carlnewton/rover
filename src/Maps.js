@@ -928,6 +928,156 @@ class Maps {
                     ],
                 }
             },
+            // Level
+            {
+                levelID: 17,
+                map: [
+                    [1, 1, 1, 1, 0, 1, 1, 1, 1],
+                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1]
+                ],
+                player: {
+                    position: {
+                        row: 4,
+                        cell: 6
+                    }
+                },
+                interactables: {
+                    pushBlocks: [
+                        {
+                            type: 'laserCapture',
+                            position: {
+                                row: 0,
+                                cell: 4
+                            }
+                        },
+                        {
+                            type: 'laser',
+                            position: {
+                                row: 3,
+                                cell: 0
+                            },
+                            orientation: 270
+                        },
+                        {
+                            type: 'mirror',
+                            position: {
+                                row: 4,
+                                cell: 2
+                            },
+                            orientation: 90
+                        },
+                    ],
+                    exits: [
+                        {
+                            position: {
+                                row: 4,
+                                cell: 6
+                            }
+                        }
+                    ],
+                }
+            },
+            // Level
+            {
+                levelID: 18,
+                map: [
+                    [0, 0, 0, 1, 0, 0, 1, 1, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 1, 1],
+                    [0, 0, 1, 1, 0, 0, 0, 0, 1],
+                    [0, 0, 1, 1, 1, 0, 0, 0, 1],
+                    [0, 0, 0, 1, 1, 1, 1, 1, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 1, 1],
+                    [2, 0, 1, 0, 0, 0, 0, 0, 0],
+                    [2, 1, 1, 1, 1, 1, 1, 1, 2],
+                    [0, 2, 2, 2, 2, 2, 2, 2, 0],
+                ],
+                player: {
+                    position: {
+                        row: 0,
+                        cell: 5
+                    }
+                },
+                interactables: {
+                    pushBlocks: [
+                        {
+                            type: 'default',
+                            position: {
+                                row: 1,
+                                cell: 5
+                            },
+                            orientation: 0
+                        },
+                        {
+                            type: 'laserCapture',
+                            position: {
+                                row: 6,
+                                cell: 4
+                            }
+                        },
+                        {
+                            type: 'laser',
+                            position: {
+                                row: 6,
+                                cell: 1
+                            },
+                            orientation: 180
+                        },
+                        {
+                            type: 'mirror',
+                            position: {
+                                row: 1,
+                                cell: 1
+                            },
+                            orientation: 0
+                        },
+                        {
+                            type: 'mirror',
+                            position: {
+                                row: 2,
+                                cell: 5
+                            },
+                            orientation: 270
+                        },
+                        {
+                            type: 'mirror',
+                            position: {
+                                row: 8,
+                                cell: 0
+                            },
+                            orientation: 180
+                        },
+                        {
+                            type: 'mirror',
+                            position: {
+                                row: 8,
+                                cell: 8
+                            },
+                            orientation: 90
+                        },
+                        {
+                            type: 'mirror',
+                            position: {
+                                row: 6,
+                                cell: 8
+                            },
+                            orientation: 0
+                        },
+                    ],
+                    exits: [
+                        {
+                            position: {
+                                row: 6,
+                                cell: 6
+                            }
+                        }
+                    ],
+                }
+            },
         ];
     }
 

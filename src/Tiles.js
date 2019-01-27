@@ -51,7 +51,6 @@ class Tiles {
                 id: 1,
                 name: 'laser',
                 colour: '#eb7b59',
-                detailColour: '#99503a',
                 obstructsPlayer: true,
                 obstructsPushBlock: true,
                 obstructsLaser: true,
@@ -60,7 +59,15 @@ class Tiles {
                 id: 2,
                 name: 'laserCapture',
                 colour: '#eb7b59',
-                detailColour: '#c00',
+                obstructsPlayer: true,
+                obstructsPushBlock: true,
+                obstructsLaser: true,
+            },
+            {
+                id: 3,
+                name: 'mirror',
+                colour: '#eb7b59',
+                detailColour: '#d9d2c1',
                 obstructsPlayer: true,
                 obstructsPushBlock: true,
                 obstructsLaser: true,
@@ -102,7 +109,6 @@ class Tiles {
                 id: 0,
                 name: 'laserEmitter',
                 colour: '#bc6247',
-                detailColour: '#663627',
                 obstructsPlayer: true,
                 obstructsPushBlock: true
             }

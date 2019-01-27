@@ -130,27 +130,36 @@ class Canvas {
             var top = pushBlock.row * this.tileSize,
                 left = pushBlock.cell * this.tileSize;
 
+            if (
+                pushBlock.tile.name === 'laser'
+                || pushBlock.tile.name === 'mirror'
+            ) {
+                var direction = 'down';
+                switch (pushBlock.orientation) {
+                    case 0:
+                        direction = 'down';
+                        break;
+                    case 90:
+                        direction = 'left';
+                        break;
+                    case 180:
+                        direction = 'up';
+                        break;
+                    case 270:
+                        direction = 'right';
+                        break;
+                }
+            }
+
             switch (pushBlock.tile.name) {
                 case 'laser':
-                    var direction = 'down';
-                    switch (pushBlock.orientation) {
-                        case 0:
-                            direction = 'down';
-                            break;
-                        case 90:
-                            direction = 'left';
-                            break;
-                        case 180:
-                            direction = 'up';
-                            break;
-                        case 270:
-                            direction = 'right';
-                            break;
-                    }
                     this.drawLaserEmitter(pushBlock.tile.colour, top, left, direction);
                     break;
                 case 'laserCapture':
                     this.drawLaserCapture(pushBlock.tile.colour, top, left, pushBlock.active);
+                    break;
+                case 'mirror':
+                    this.drawMirror(pushBlock.tile.colour, pushBlock.tile.detailColour, top, left, direction, pushBlock.active);
                     break;
                 default:
                     this.drawTile(pushBlock.tile.colour, top, left);
@@ -343,6 +352,61 @@ class Canvas {
                 this.ctx.lineTo(left + this.tileSize, top + this.tileSizePercent(66));
                 this.ctx.lineTo(left + this.tileSizePercent(80), top + this.tileSizePercent(50));
                 this.ctx.lineTo(left + this.tileSize, top + this.tileSizePercent(33));
+                this.ctx.lineTo(left + this.tileSize, top);
+                break;
+        }
+        this.ctx.fill();
+        
+    }
+
+    drawMirror(colour, detailColour, top, left, direction, active) {
+
+        this.drawTile(detailColour, top, left);
+
+        if (active === true) {
+            this.drawTileLine('up', this.tileSize / 11, this.getLaserColour(), top, left);
+            this.drawTileLine('left', this.tileSize / 11, this.getLaserColour(), top, left);
+        }
+
+        top += this.getTopPadding();
+        left += this.getLeftPadding();
+
+        var thickness = this.tileSizePercent(5);
+
+        this.ctx.strokeStyle = colour;
+        this.ctx.lineWidth = thickness;
+        this.ctx.strokeRect(
+            left + (thickness / 2),
+            top + (thickness / 2),
+            this.tileSize - (thickness), 
+            this.tileSize - (thickness)
+        );
+
+        this.ctx.fillStyle = colour;
+
+        switch(direction) {
+            case 'up':
+                this.ctx.beginPath();
+                this.ctx.moveTo(left, top);
+                this.ctx.lineTo(left, top + this.tileSize);
+                this.ctx.lineTo(left + this.tileSize, top + this.tileSize);
+                break;
+            case 'down':
+                this.ctx.beginPath();
+                this.ctx.moveTo(left, top);
+                this.ctx.lineTo(left + this.tileSize, top);
+                this.ctx.lineTo(left + this.tileSize, top + this.tileSize);
+                break;
+            case 'left':
+                this.ctx.beginPath();
+                this.ctx.moveTo(left, top + this.tileSize);
+                this.ctx.lineTo(left + this.tileSize, top);
+                this.ctx.lineTo(left + this.tileSize, top + this.tileSize);
+                break;
+            case 'right':
+                this.ctx.beginPath();
+                this.ctx.moveTo(left, top);
+                this.ctx.lineTo(left, top + this.tileSize);
                 this.ctx.lineTo(left + this.tileSize, top);
                 break;
         }
