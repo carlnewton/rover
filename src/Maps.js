@@ -528,17 +528,15 @@ class Maps {
             {
                 levelID: 11,
                 map: [
-                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
                     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
                     [0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
                 ],
                 player: {
                     position: {
-                        row: 5,
+                        row: 4,
                         cell: 0
                     }
                 },
@@ -547,21 +545,21 @@ class Maps {
                         {
                             type: 'default',
                             position: {
-                                row: 2,
+                                row: 1,
                                 cell: 1
                             }
                         },
                         {
                             type: 'default',
                             position: {
-                                row: 2,
+                                row: 1,
                                 cell: 4
                             }
                         },
                         {
                             type: 'laser',
                             position: {
-                                row: 1,
+                                row: 0,
                                 cell: 8
                             },
                             orientation: 0
@@ -570,7 +568,7 @@ class Maps {
                     exits: [
                         {
                             position: {
-                                row: 5,
+                                row: 4,
                                 cell: 10
                             }
                         }
@@ -578,14 +576,14 @@ class Maps {
                     laserEmitters: [
                         {
                             position: {
-                                row: 5,
+                                row: 4,
                                 cell: 5
                             },
                             direction: 'up'
                         },
                         {
                             position: {
-                                row: 1,
+                                row: 0,
                                 cell: 2
                             },
                             direction: 'down'
@@ -819,18 +817,18 @@ class Maps {
             {
                 levelID: 15,
                 map: [
-                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
-                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
-                    [1, 1, 0, 0, 0, 0, 0, 0, 1],
-                    [1, 1, 0, 0, 0, 0, 0, 1, 1],
-                    [1, 1, 0, 0, 0, 0, 0, 1, 1],
-                    [1, 1, 1, 0, 0, 0, 0, 1, 1],
-                    [1, 1, 1, 0, 0, 0, 1, 1, 1],
+                    [0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0],
+                    [1, 0, 0, 0, 0, 0, 0],
+                    [1, 0, 0, 0, 0, 0, 1],
+                    [1, 0, 0, 0, 0, 0, 1],
+                    [1, 1, 0, 0, 0, 0, 1],
+                    [1, 1, 0, 0, 0, 1, 1],
                 ],
                 player: {
                     position: {
                         row: 5,
-                        cell: 4
+                        cell: 3
                     }
                 },
                 interactables: {
@@ -839,14 +837,14 @@ class Maps {
                             type: 'laserCapture',
                             position: {
                                 row: 2,
-                                cell: 2
+                                cell: 1
                             }
                         },
                         {
                             type: 'laser',
                             position: {
                                 row: 3,
-                                cell: 6
+                                cell: 5
                             },
                             orientation: 90
                         },
@@ -855,7 +853,7 @@ class Maps {
                         {
                             position: {
                                 row: 3,
-                                cell: 6
+                                cell: 5
                             }
                         },
                     ],
@@ -863,7 +861,7 @@ class Maps {
                         {
                             position: {
                                 row: 5,
-                                cell: 4
+                                cell: 3
                             }
                         }
                     ],
@@ -873,8 +871,8 @@ class Maps {
             {
                 levelID: 16,
                 map: [
-                    [1, 1, 0, 0, 0, 0, 2, 0],
-                    [2, 0, 0, 0, 0, 2, 0, 0],
+                    [1, 1, 0, 0, 0, 0, 0, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 1],
                     [0, 0, 2, 0, 0, 0, 0, 1],
                     [0, 1, 0, 0, 1, 0, 0, 0],
                     [0, 0, 0, 0, 1, 0, 0, 0],
