@@ -819,6 +819,60 @@ class Maps {
             {
                 levelID: 15,
                 map: [
+                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 1, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 1, 0, 0, 0, 0, 0, 1, 1],
+                    [1, 1, 0, 0, 0, 0, 0, 1, 1],
+                    [1, 1, 1, 0, 0, 0, 0, 1, 1],
+                    [1, 1, 1, 0, 0, 0, 1, 1, 1],
+                ],
+                player: {
+                    position: {
+                        row: 5,
+                        cell: 4
+                    }
+                },
+                interactables: {
+                    pushBlocks: [
+                        {
+                            type: 'laserCapture',
+                            position: {
+                                row: 2,
+                                cell: 2
+                            }
+                        },
+                        {
+                            type: 'laser',
+                            position: {
+                                row: 3,
+                                cell: 6
+                            },
+                            orientation: 90
+                        },
+                    ],
+                    pushBlockHomes: [
+                        {
+                            position: {
+                                row: 3,
+                                cell: 6
+                            }
+                        },
+                    ],
+                    exits: [
+                        {
+                            position: {
+                                row: 5,
+                                cell: 4
+                            }
+                        }
+                    ],
+                }
+            },
+            // Level
+            {
+                levelID: 16,
+                map: [
                     [1, 1, 0, 0, 0, 0, 2, 0],
                     [2, 0, 0, 0, 0, 2, 0, 0],
                     [0, 0, 2, 0, 0, 0, 0, 1],
