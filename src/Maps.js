@@ -770,17 +770,19 @@ class Maps {
             {
                 levelID: 14,
                 map: [
-                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [1, 1, 1, 1, 0, 1, 1, 1, 1],
+                    [1, 1, 1, 0, 0, 0, 1, 1, 1],
+                    [1, 1, 0, 0, 0, 0, 0, 1, 1],
+                    [1, 0, 0, 1, 0, 1, 0, 0, 1],
                     [0, 0, 1, 0, 0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 0, 0, 1, 0, 1, 0, 0, 1],
+                    [1, 1, 0, 0, 0, 0, 0, 1, 1],
+                    [1, 1, 1, 0, 0, 0, 1, 1, 1],
+                    [1, 1, 1, 1, 0, 1, 1, 1, 1],
                 ],
                 player: {
                     position: {
-                        row: 5,
+                        row: 6,
                         cell: 4
                     }
                 },
@@ -789,7 +791,7 @@ class Maps {
                         {
                             type: 'laserCapture',
                             position: {
-                                row: 1,
+                                row: 2,
                                 cell: 4
                             }
                         }
@@ -797,7 +799,7 @@ class Maps {
                     exits: [
                         {
                             position: {
-                                row: 5,
+                                row: 6,
                                 cell: 4
                             }
                         }
@@ -805,10 +807,71 @@ class Maps {
                     laserEmitters: [
                         {
                             position: {
-                                row: 3,
+                                row: 4,
                                 cell: 6
                             },
                             direction: 'left'
+                        }
+                    ],
+                }
+            },
+            // Level
+            {
+                levelID: 15,
+                map: [
+                    [1, 1, 0, 0, 0, 0, 2, 0],
+                    [2, 0, 0, 0, 0, 2, 0, 0],
+                    [0, 0, 2, 0, 0, 0, 0, 1],
+                    [0, 1, 0, 0, 1, 0, 0, 0],
+                    [0, 0, 0, 0, 1, 0, 0, 0],
+                    [0, 0, 0, 0, 1, 0, 0, 0],
+                ],
+                player: {
+                    position: {
+                        row: 4,
+                        cell: 6
+                    }
+                },
+                interactables: {
+                    pushBlocks: [
+                        {
+                            type: 'laserCapture',
+                            position: {
+                                row: 1,
+                                cell: 1
+                            }
+                        },
+                        {
+                            type: 'laserCapture',
+                            position: {
+                                row: 2,
+                                cell: 1
+                            }
+                        },
+                        {
+                            type: 'laser',
+                            position: {
+                                row: 2,
+                                cell: 6
+                            },
+                            orientation: 90
+                        },
+                    ],
+                    laserEmitters: [
+                        {
+                            position: {
+                                row: 5,
+                                cell: 0
+                            },
+                            direction: 'right'
+                        }
+                    ],
+                    exits: [
+                        {
+                            position: {
+                                row: 4,
+                                cell: 1
+                            }
                         }
                     ],
                 }

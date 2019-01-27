@@ -272,9 +272,9 @@ class Canvas {
             case 'up':
                 this.ctx.fillStyle = this.getLaserColour();
                 this.ctx.beginPath();
-                this.ctx.moveTo(left + this.tileSizePercent(33), top);
-                this.ctx.lineTo(left + this.tileSizePercent(50), top + this.tileSizePercent(20));
-                this.ctx.lineTo(left + this.tileSizePercent(66), top);
+                this.ctx.moveTo(left + this.tileSizePercent(36), top);
+                this.ctx.lineTo(left + this.tileSizePercent(50), top + this.tileSizePercent(16));
+                this.ctx.lineTo(left + this.tileSizePercent(63), top);
                 this.ctx.fill();
 
                 this.ctx.fillStyle = colour;
@@ -291,9 +291,9 @@ class Canvas {
             case 'down':
                 this.ctx.fillStyle = this.getLaserColour();
                 this.ctx.beginPath();
-                this.ctx.moveTo(left + this.tileSizePercent(33), top + this.tileSize);
-                this.ctx.lineTo(left + this.tileSizePercent(50), top + this.tileSizePercent(80));
-                this.ctx.lineTo(left + this.tileSizePercent(66), top + this.tileSize);
+                this.ctx.moveTo(left + this.tileSizePercent(36), top + this.tileSize);
+                this.ctx.lineTo(left + this.tileSizePercent(50), top + this.tileSizePercent(84));
+                this.ctx.lineTo(left + this.tileSizePercent(63), top + this.tileSize);
                 this.ctx.fill();
 
                 this.ctx.fillStyle = colour;
@@ -310,9 +310,9 @@ class Canvas {
             case 'left':
                 this.ctx.fillStyle = this.getLaserColour();
                 this.ctx.beginPath();
-                this.ctx.moveTo(left, top + this.tileSizePercent(33));
-                this.ctx.lineTo(left + this.tileSizePercent(20), top + this.tileSizePercent(50));
-                this.ctx.lineTo(left, top + this.tileSizePercent(66));
+                this.ctx.moveTo(left, top + this.tileSizePercent(36));
+                this.ctx.lineTo(left + this.tileSizePercent(16), top + this.tileSizePercent(50));
+                this.ctx.lineTo(left, top + this.tileSizePercent(63));
                 this.ctx.fill();
 
                 this.ctx.fillStyle = colour;
@@ -329,9 +329,9 @@ class Canvas {
             case 'right':
                 this.ctx.fillStyle = this.getLaserColour();
                 this.ctx.beginPath();
-                this.ctx.moveTo(left + this.tileSize, top + this.tileSizePercent(33));
-                this.ctx.lineTo(left + this.tileSizePercent(80), top + this.tileSizePercent(50));
-                this.ctx.lineTo(left + this.tileSize, top + this.tileSizePercent(66));
+                this.ctx.moveTo(left + this.tileSize, top + this.tileSizePercent(36));
+                this.ctx.lineTo(left + this.tileSizePercent(84), top + this.tileSizePercent(50));
+                this.ctx.lineTo(left + this.tileSize, top + this.tileSizePercent(63));
                 this.ctx.fill();
 
                 this.ctx.fillStyle = colour;
