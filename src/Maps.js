@@ -986,7 +986,7 @@ class Maps {
             {
                 levelID: 18,
                 map: [
-                    [0, 0, 0, 1, 0, 0, 1, 1, 1],
+                    [0, 0, 0, 1, 0, 2, 1, 1, 1],
                     [0, 0, 0, 0, 0, 0, 0, 1, 1],
                     [0, 0, 1, 1, 0, 0, 0, 0, 1],
                     [0, 0, 1, 1, 1, 0, 0, 0, 1],
@@ -1073,6 +1073,117 @@ class Maps {
                             position: {
                                 row: 6,
                                 cell: 6
+                            }
+                        }
+                    ],
+                }
+            },
+            // Level
+            {
+                levelID: 19,
+                map: [
+                    [0, 2, 2, 2, 0, 1, 1, 0, 0],
+                    [2, 2, 2, 2, 2, 0, 0, 0, 0],
+                    [2, 2, 0, 0, 2, 0, 0, 0, 0],
+                    [0, 2, 0, 2, 0, 0, 0, 0, 0],
+                    [1, 1, 1, 0, 1, 1, 1, 0, 1],
+                    [1, 0, 0, 0, 0, 1, 0, 0, 0],
+                    [1, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [1, 0, 0, 0, 0, 1, 0, 0, 0],
+                ],
+                player: {
+                    position: {
+                        row: 6,
+                        cell: 7
+                    }
+                },
+                interactables: {
+                    pushBlocks: [
+                        {
+                            type: 'laserCapture',
+                            position: {
+                                row: 3,
+                                cell: 8
+                            }
+                        },
+                        {
+                            type: 'laser',
+                            position: {
+                                row: 2,
+                                cell: 2
+                            },
+                            orientation: 0
+                        },
+                        {
+                            type: 'mirror',
+                            position: {
+                                row: 0,
+                                cell: 0
+                            },
+                            orientation: 270
+                        },
+                        {
+                            type: 'mirror',
+                            position: {
+                                row: 0,
+                                cell: 4
+                            },
+                            orientation: 0
+                        },
+                        {
+                            type: 'mirror',
+                            position: {
+                                row: 3,
+                                cell: 0
+                            },
+                            orientation: 180
+                        },
+                        {
+                            type: 'mirror',
+                            position: {
+                                row: 3,
+                                cell: 2
+                            },
+                            orientation: 90
+                        },
+                        {
+                            type: 'mirror',
+                            position: {
+                                row: 3,
+                                cell: 4
+                            },
+                            orientation: 180
+                        },
+                        {
+                            type: 'mirror',
+                            position: {
+                                row: 2,
+                                cell: 5
+                            },
+                            orientation: 270
+                        },
+                        {
+                            type: 'mirror',
+                            position: {
+                                row: 2,
+                                cell: 6
+                            },
+                            orientation: 90
+                        },
+                        {
+                            type: 'mirror',
+                            position: {
+                                row: 2,
+                                cell: 7
+                            },
+                            orientation: 180
+                        },
+                    ],
+                    exits: [
+                        {
+                            position: {
+                                row: 0,
+                                cell: 8
                             }
                         }
                     ],

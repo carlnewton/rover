@@ -17,7 +17,6 @@ class Exit {
 
         for (let exit of this.game.level.map.interactables.exits) {
             if (exit.position.row === playerPosition.row && exit.position.cell === playerPosition.cell) {
-                console.log('exit')
                 return true;
             }
         }
