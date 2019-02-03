@@ -42,6 +42,10 @@ class Controls {
             case 32:
                 this.spacebarKey();
                 break;
+            // escape
+            case 27:
+                this.escapeKey();
+                break;
         } 
     }
 
@@ -82,6 +86,14 @@ class Controls {
             this.game.pause();
         } else {
             this.game.menu.action();
+        }
+    }
+
+    escapeKey() {
+        if (this.game.paused === false) {
+            this.game.pause();
+        } else {
+            this.game.menu.escape();
         }
     }
 }

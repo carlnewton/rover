@@ -106,4 +106,12 @@ class Menu {
             }
         }
     }
+
+    escape() {
+        if (this.menu.title !== 'pause') {
+            this.switchMenu('pause', 2);
+        } else {
+            this.game.pause();
+        }
+    }
 }
