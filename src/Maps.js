@@ -4,6 +4,7 @@ class Maps {
             // Level
             {
                 levelID: 1,
+                name: 'Hello, World!',
                 map: [
                     [1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1],
                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -31,6 +32,7 @@ class Maps {
             // Level
             {
                 levelID: 2,
+                name: 'What does the fox say?',
                 map: [
                     [1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1],
                     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
@@ -60,6 +62,7 @@ class Maps {
             // Level
             {
                 levelID: 3,
+                name: 'Aye!',
                 map: [
                     [1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1],
                     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
@@ -98,6 +101,7 @@ class Maps {
             // Level
             {
                 levelID: 4,
+                name: 'Derpy',
                 map: [
                     [1, 2, 2, 2, 1, 1, 1, 2, 2, 2, 1],
                     [2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2],
@@ -144,6 +148,7 @@ class Maps {
             // Level
             {
                 levelID: 5,
+                name: 'Ninja',
                 map: [
                     [1, 0, 0, 1, 1, 1, 1],
                     [1, 0, 0, 0, 0, 0, 0],
@@ -190,6 +195,7 @@ class Maps {
             // Level
             {
                 levelID: 6,
+                name: 'Hermit',
                 map: [
                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     [0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0],
@@ -250,6 +256,7 @@ class Maps {
             // Level
             {
                 levelID: 7,
+                name: 'Without a trace',
                 map: [
                     [0, 0, 0, 1, 0, 2, 0, 0],
                     [2, 0, 0, 0, 0, 1, 0, 0],
@@ -335,6 +342,7 @@ class Maps {
             // Level
             {
                 levelID: 8,
+                name: 'Destroy them with lasers!',
                 map: [
                     [1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1],
                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -382,6 +390,7 @@ class Maps {
             // Level
             {
                 levelID: 9,
+                name: 'Clear a path',
                 map: [
                     [1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1],
                     [1, 1, 1, 1, 2, 2, 0, 1, 0, 0, 0],
@@ -459,6 +468,7 @@ class Maps {
             // Level
             {
                 levelID: 10,
+                name: 'Scenic route',
                 map: [
                     [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
                     [0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0],
@@ -527,6 +537,7 @@ class Maps {
             // Level
             {
                 levelID: 11,
+                name: 'Push past the pain',
                 map: [
                     [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -594,6 +605,7 @@ class Maps {
             // Level
             {
                 levelID: 12,
+                name: 'Slider',
                 map: [
                     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
                     [0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
@@ -665,6 +677,7 @@ class Maps {
             // Level
             {
                 levelID: 13,
+                name: 'The box',
                 map: [
                     [1, 0, 0, 0, 0, 0, 0, 0, 1],
                     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -767,6 +780,7 @@ class Maps {
             // Level
             {
                 levelID: 14,
+                name: 'Diamonds and guns',
                 map: [
                     [1, 1, 1, 1, 0, 1, 1, 1, 1],
                     [1, 1, 1, 0, 0, 0, 1, 1, 1],
@@ -816,6 +830,7 @@ class Maps {
             // Level
             {
                 levelID: 15,
+                name: 'Simple',
                 map: [
                     [0, 0, 0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0, 0, 0],
@@ -870,6 +885,7 @@ class Maps {
             // Level
             {
                 levelID: 16,
+                name: 'A problem shared...',
                 map: [
                     [1, 1, 0, 0, 0, 0, 0, 1],
                     [0, 0, 0, 0, 0, 0, 0, 1],
@@ -931,6 +947,7 @@ class Maps {
             // Level
             {
                 levelID: 17,
+                name: 'Upon reflection...',
                 map: [
                     [1, 1, 1, 1, 0, 1, 1, 1, 1],
                     [1, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -985,6 +1002,7 @@ class Maps {
             // Level
             {
                 levelID: 18,
+                name: 'Wraparound',
                 map: [
                     [0, 0, 0, 1, 0, 2, 1, 1, 1],
                     [0, 0, 0, 0, 0, 0, 0, 1, 1],
@@ -1081,6 +1099,86 @@ class Maps {
             // Level
             {
                 levelID: 19,
+                name: 'Bypass',
+                map: [
+                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                    [1, 0, 0, 0, 0, 0, 0, 0, 1],
+                ],
+                player: {
+                    position: {
+                        row: 5,
+                        cell: 4
+                    }
+                },
+                interactables: {
+                    pushBlocks: [
+                        {
+                            type: 'laserCapture',
+                            position: {
+                                row: 3,
+                                cell: 8
+                            }
+                        },
+                        {
+                            type: 'laser',
+                            position: {
+                                row: 3,
+                                cell: 0
+                            },
+                            orientation: 270
+                        },
+                        {
+                            type: 'mirror',
+                            position: {
+                                row: 5,
+                                cell: 6
+                            },
+                            orientation: 90
+                        },
+                        {
+                            type: 'mirror',
+                            position: {
+                                row: 1,
+                                cell: 6
+                            },
+                            orientation: 0
+                        },
+                        {
+                            type: 'mirror',
+                            position: {
+                                row: 1,
+                                cell: 2
+                            },
+                            orientation: 270
+                        },
+                        {
+                            type: 'mirror',
+                            position: {
+                                row: 5,
+                                cell: 2
+                            },
+                            orientation: 180
+                        },
+                    ],
+                    exits: [
+                        {
+                            position: {
+                                row: 1,
+                                cell: 4
+                            }
+                        }
+                    ],
+                }
+            },
+            // Level
+            {
+                levelID: 20,
+                name: 'Toggle',
                 map: [
                     [0, 2, 2, 2, 0, 1, 1, 0, 0],
                     [2, 2, 2, 2, 2, 0, 0, 0, 0],

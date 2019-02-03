@@ -52,6 +52,108 @@ class Canvas {
     drawFrame() {
         this.drawLevel();
         this.drawPlayer();
+        this.drawMenu();
+    }
+
+    drawMenu() {
+        if (this.game.menu.open === false) {
+            return;
+        }
+
+        this.ctx.fillStyle = this.game.tiles.playerTiles[0].colour;
+        this.ctx.fillRect(
+            0,
+            0,
+            this.c.clientWidth, 
+            this.c.clientHeight
+        );
+
+        var fontSize = this.tileSize;
+        this.ctx.font = fontSize + 'px Arial';
+
+        switch (this.game.menu.menu.title) {
+            case 'pause':
+
+                for (var item = 0; item < this.game.menu.menu.items.length; item++) {
+                    var alpha = 0.5;
+                    if (this.game.menu.selectedItem === item) {
+                        alpha = 1;
+                    }
+                    this.ctx.fillStyle = 'rgba(255, 255, 255, ' + alpha + ')';
+                    this.ctx.fillText(this.game.menu.menu.items[item].title, fontSize, fontSize * (item + 1.5));
+                }
+                break;
+            case 'levelSelect':
+
+                var alpha = 0.5;
+
+                if (this.game.menu.selectedItem === 0) {
+                    alpha = 1;
+                }
+                this.ctx.fillStyle = 'rgba(255, 255, 255, ' + alpha + ')';
+                this.ctx.fillText(this.game.menu.menu.items[0].title, fontSize, fontSize * 1.5);
+
+                var levels = [];
+                for (let item of this.game.menu.menu.items) {
+                    if (!isNaN(item.action)) {
+                        levels.push(item);
+                    }
+                }
+
+                for (var item = 1; item < this.game.menu.menu.items.length; item++) {
+                    var selected = false;
+                    if (this.game.menu.selectedItem === item) {
+                        selected = true;
+                    }
+                    
+                    var padding = this.tileSize;
+                    var iconSize = (this.c.width - (padding * 2)) / levels.length;
+
+                    if (selected) {
+                        this.ctx.fillStyle = 'rgba(255, 255,255 0.3)';
+                        this.ctx.fillRect(
+                            padding + (iconSize * (item - 1)) + this.tileSize / 8,
+                            (fontSize * 2),
+                            iconSize - this.tileSize / 8, 
+                            iconSize - this.tileSize / 8
+                        );
+                    }
+
+                    this.ctx.strokeStyle = '#ffffff';
+                    this.ctx.lineWidth = 3;
+                    this.ctx.strokeRect(
+                        padding + (iconSize * (item - 1)) + (this.tileSize / 8),
+                        fontSize * 2,
+                        iconSize - (this.tileSize / 8), 
+                        iconSize - (this.tileSize / 8)
+                    );
+                }
+
+                this.ctx.fillStyle = '#ffffff';
+
+                var selectedItem = this.game.menu.selectedItem,
+                    item = this.game.menu.menu.items[selectedItem];
+                if (this.game.menu.selectedItem !== 0) {
+                    this.ctx.fillText(item.title, fontSize, fontSize * 5);
+                }
+
+                if (this.game.stats.levels[item.action] !== undefined) {
+                    var stats = this.game.stats.levels[item.action],
+                    milliseconds = parseInt((stats.time%1000)/100),
+                    seconds = parseInt((stats.time/1000)%60),
+                    minutes = parseInt((stats.time/(1000*60))%60);
+
+                    minutes = (minutes < 10) ? "0" + minutes : minutes;
+                    seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+                    this.ctx.font = fontSize / 2 + 'px Arial';
+                    this.ctx.fillText('Fewest moves: ' + stats.moves , fontSize, fontSize * 6);
+                    this.ctx.fillText('Fastest time: ' + minutes + ':' + seconds + '.' + milliseconds , fontSize, fontSize * 7);
+                }
+
+                break;
+        }
+        
     }
 
     drawLevel() {
@@ -74,7 +176,6 @@ class Canvas {
     }
 
     drawPlayer() {
-        // #todo #idea Animation class could contain methods that create range loops based on game tick to animate player shape.
         var playerTile = this.game.tiles.getPlayerTile(),
             top = this.game.player.position.row * this.tileSize,
             left = this.game.player.position.cell * this.tileSize;

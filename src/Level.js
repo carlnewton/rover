@@ -3,6 +3,8 @@ class Level {
         this.game = game;
         this.map = this.game.maps.getByLevelID(levelID);
         this.begin = true;
+        this.moves = 0;
+        this.startTime = Date.now();
     }
 
     locationAvailable(row, cell, availableFor) {

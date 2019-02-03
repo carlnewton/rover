@@ -38,7 +38,6 @@ class Player {
             this.nextPosition.row = nextPosition.row;
             this.nextPosition.cell = nextPosition.cell;
         }
-
         switch (direction) {
             case 'up':
                 if (Math.floor(this.position.row - increment) < this.nextPosition.row) {
@@ -46,6 +45,7 @@ class Player {
                     this.nextPosition.row = null;
                     this.nextPosition.cell = null;
                     this.moving = false;
+                    this.game.level.moves += 1;
                     this.checkStatus();
                     return true;
                 }
@@ -58,6 +58,7 @@ class Player {
                     this.nextPosition.row = null;
                     this.nextPosition.cell = null;
                     this.moving = false;
+                    this.game.level.moves += 1;
                     this.checkStatus();
                     return true;
                 }
@@ -70,6 +71,7 @@ class Player {
                     this.nextPosition.row = null;
                     this.nextPosition.cell = null;
                     this.moving = false;
+                    this.game.level.moves += 1;
                     this.checkStatus();
                     return true;
                 }
@@ -82,6 +84,7 @@ class Player {
                     this.nextPosition.row = null;
                     this.nextPosition.cell = null;
                     this.moving = false;
+                    this.game.level.moves += 1;
                     this.checkStatus();
                     return true;
                 }

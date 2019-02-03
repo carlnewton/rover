@@ -9,6 +9,7 @@ gulp.task('build', function() {
             './src/Tiles.js',
             './src/PushBlockTypes.js',
             './src/Timer.js',
+            './src/Stats.js',
             './src/Move.js',
             './src/Level.js',
             './src/Player.js',
@@ -17,6 +18,8 @@ gulp.task('build', function() {
             './src/Exit.js',
             './src/Laser.js',
             './src/Controls.js',
+            './src/Menu.js',
+            './src/Menus.js',
             './src/Canvas.js',
             './src/Game.js',
             './src/index.js' 
