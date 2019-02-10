@@ -52,7 +52,41 @@ class Canvas {
     drawFrame() {
         this.drawLevel();
         this.drawPlayer();
+        this.drawEditor();
         this.drawMenu();
+    }
+
+    drawEditor() {
+        if (this.game.editor.enabled === false) {
+            return;
+        }
+
+        this.ctx.strokeStyle = 'rgba(0,0,0,0.2)';
+        this.ctx.lineWidth = 1;
+        for (var row = 0; row < this.game.level.map.map.length; row++) {
+            for (var column = 0; column < this.game.level.map.map[row].length; column++) {
+                this.ctx.strokeRect(
+                    this.getLeftPadding() + this.tileSize * column,
+                    this.getTopPadding() + this.tileSize * row,
+                    this.tileSize, 
+                    this.tileSize
+                );
+            }
+        }
+        
+        var focussedTile = this.game.editor.getFocussedTile();
+
+        this.ctx.lineWidth = this.tileSize / 16;
+        this.ctx.strokeStyle = 'rgba(0,0,0,0.2)';
+
+        if (focussedTile) {
+            this.ctx.strokeRect(
+                this.getLeftPadding() + (this.tileSize * focussedTile.x) + (this.ctx.lineWidth / 2),
+                this.getTopPadding() + (this.tileSize * focussedTile.y) + (this.ctx.lineWidth / 2),
+                this.tileSize - this.ctx.lineWidth, 
+                this.tileSize - this.ctx.lineWidth
+            );
+        }
     }
 
     drawMenu() {

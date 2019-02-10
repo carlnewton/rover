@@ -15,6 +15,7 @@ class Game {
         this.controls = new Controls(this);
         this.menus = new Menus(this);
         this.menu = new Menu(this);
+        this.editor = new Editor(this);
         this.canvas = new Canvas(this);
 
         this.tickFrame = 0;
@@ -48,11 +49,18 @@ class Game {
         this.lastTickUpdate = now;
 
         this.tickFrame++;
+
+        this.canvas.drawFrame();
+
+        if (this.editor.enabled) {
+            this.editor.tick();
+            return;
+        }
+
         if (this.paused === false) {
             this.move.move();
         }
-        this.canvas.drawFrame();
-
+        
         if (this.nextLevelQueued) {
             this.loadNextLevel();
         }

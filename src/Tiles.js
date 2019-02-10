@@ -134,6 +134,14 @@ class Tiles {
         };
     }
 
+    getMapTileByName(name) {
+        for (let tile of this.mapTiles) {
+            if (tile.name === name) {
+                return tile;
+            }
+        };
+    }
+
     getPushBlockTileByID(id) {
         for (let tile of this.pushBlockTiles) {
             if (tile.id === id) {

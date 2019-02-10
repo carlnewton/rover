@@ -51,6 +51,10 @@ class Menu {
             case 'pause':
                 switch(this.menu.items[this.selectedItem].action) {
                     case 'resume':
+                        if (this.game.editor.enabled = true) {
+                            this.game.restartLevel();
+                        }
+                        this.game.editor.enabled = false;
                         this.game.pause();
                         break;
                     case 'restart':
@@ -61,6 +65,10 @@ class Menu {
                         var currentLevel = this.game.level.map.levelID;
                         this.switchMenu('levelSelect', currentLevel);
                         break;
+                    case 'levelEditor':
+                        this.game.editor.enabled = true;
+                        this.game.editor.start();
+                        this.game.pause();
                 }
                 break;
             case 'levelSelect':

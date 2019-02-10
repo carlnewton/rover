@@ -16,6 +16,10 @@ class Menus {
                     {
                         title: 'Level select',
                         action: 'levelSelect'
+                    },
+                    {
+                        title: 'Level editor',
+                        action: 'levelEditor'
                     }
                 ]
             },

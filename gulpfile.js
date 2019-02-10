@@ -20,6 +20,7 @@ gulp.task('build', function() {
             './src/Controls.js',
             './src/Menu.js',
             './src/Menus.js',
+            './src/Editor.js',
             './src/Canvas.js',
             './src/Game.js',
             './src/index.js' 

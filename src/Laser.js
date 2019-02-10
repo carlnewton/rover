@@ -9,6 +9,7 @@ class Laser {
     }
 
     addEmitters() {
+        this.emitters = [];
         if (this.game.level.map.interactables === undefined || this.game.level.map.interactables.laserEmitters === undefined) {
             return false;
         }

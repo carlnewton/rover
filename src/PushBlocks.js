@@ -11,7 +11,12 @@ class PushBlocks {
             this.allPushBlocksHome = true;
             return;
         }
+        this.addAll();
+        
+    }
 
+    addAll() {
+        this.list = [];
         for (let pushBlock of this.game.level.map.interactables.pushBlocks) {
             var orientation = 0;
             if (pushBlock.orientation !== undefined) {
