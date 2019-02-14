@@ -8,7 +8,11 @@ class Menu {
 
     openMenu(menu) {
         this.open = true;
-        this.menu = this.game.menus.getMenu(menu);
+        if (menu === 'pause' && this.game.editor.enabled === true) {
+            this.menu = this.game.menus.getMenu('editor');
+        } else {
+            this.menu = this.game.menus.getMenu(menu);
+        }
     }
 
     closeMenu() {
@@ -81,6 +85,18 @@ class Menu {
                         this.game.pause();
                         this.game.loadLevel(levelID);
                         break;
+                }
+                break;
+            case 'editor':
+                switch(this.menu.items[this.selectedItem].action) {
+                    case 'exit':
+                        this.switchMenu('pause')
+                        break;
+                    case 'edit':
+                        this.game.pause();
+                        break;
+                    case 'play':
+                        window.location.href = '?l=' + this.game.encoder.encode(this.game.level.map);
                 }
                 break;
         }

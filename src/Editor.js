@@ -5,16 +5,7 @@ class Editor {
     }
 
     start() {
-        // stringify to parse in order to not reference original level
-        var currentLevel = JSON.parse(JSON.stringify(this.game.level.map));
-        currentLevel.levelID = 0;
-        currentLevel.name = 'Custom';
-
-        if (this.game.maps.list[0].levelID !== 0) {
-            this.game.maps.list.unshift(currentLevel);
-        }
-
-        this.game.loadLevel(0);
+        this.game.loadLevel(this.game.level.map.levelID);
     }
 
     tick() {

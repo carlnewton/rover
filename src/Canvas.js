@@ -107,6 +107,7 @@ class Canvas {
 
         switch (this.game.menu.menu.title) {
             case 'pause':
+            case 'editor':
 
                 for (var item = 0; item < this.game.menu.menu.items.length; item++) {
                     var alpha = 0.5;

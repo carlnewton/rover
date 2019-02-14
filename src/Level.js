@@ -1,10 +1,16 @@
 class Level {
     constructor(game, levelID=1) {
         this.game = game;
-        this.map = this.game.maps.getByLevelID(levelID);
         this.begin = true;
         this.moves = 0;
         this.startTime = Date.now();
+        this.map = this.game.maps.getByLevelID(levelID);
+
+        var urlParams = new URLSearchParams(window.location.search);
+        var levelCode = urlParams.get('l');
+        if (levelCode) {
+            this.map = this.game.encoder.decode(levelCode);
+        }
     }
 
     locationAvailable(row, cell, availableFor) {

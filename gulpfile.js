@@ -11,6 +11,7 @@ gulp.task('build', function() {
             './src/Timer.js',
             './src/Stats.js',
             './src/Move.js',
+            './src/Encoder.js',
             './src/Level.js',
             './src/Player.js',
             './src/PushBlock.js',

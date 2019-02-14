@@ -31,6 +31,23 @@ class Menus {
                         action: 'back'
                     }
                 ]
+            },
+            {
+                title: 'editor',
+                items: [
+                    {
+                        title: 'Return to editor',
+                        action: 'edit',
+                    },
+                    {
+                        title: 'Play',
+                        action: 'play',
+                    },
+                    {
+                        title: 'Exit',
+                        action: 'exit',
+                    }
+                ]
             }
         ]
 
