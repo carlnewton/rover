@@ -292,9 +292,6 @@ class Encoder {
                             break;
                         case 'laser':
                             switch (pushBlock.orientation) {
-                                case 0:
-                                    entities.push('bl');
-                                    break;
                                 case 90:
                                     entities.push('bll');
                                     break;
@@ -304,13 +301,14 @@ class Encoder {
                                 case 270:
                                     entities.push('blr');
                                     break;
+                                default:
+                                    entities.push('bl');
+                                    break;
                             }
                             break;
                         case 'mirror':
+                            console.log(pushBlock)
                             switch (pushBlock.orientation) {
-                                case 0:
-                                    entities.push('bm');
-                                    break;
                                 case 90:
                                     entities.push('bml');
                                     break;
@@ -319,6 +317,9 @@ class Encoder {
                                     break;
                                 case 270:
                                     entities.push('bmr');
+                                    break;
+                                default:
+                                    entities.push('bm');
                                     break;
                             }
                             break;
