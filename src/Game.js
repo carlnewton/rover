@@ -1,5 +1,11 @@
 class Game {
     constructor() {
+        var levelID = 1;
+        var urlParams = new URLSearchParams(window.location.search);
+        var levelCode = urlParams.get('l');
+        if (levelCode) {
+            levelID = 0;
+        }
         this.maps = new Maps(this);
         this.tiles = new Tiles();
         this.pushBlockTypes = new PushBlockTypes();
@@ -8,7 +14,7 @@ class Game {
         this.stats = new Stats(this);
         this.move = new Move(this);
         this.encoder = new Encoder(this);
-        this.level = new Level(this);
+        this.level = new Level(this, levelID);
         this.player = new Player(this);
         this.pushBlocks = new PushBlocks(this);
         this.exit = new Exit(this);

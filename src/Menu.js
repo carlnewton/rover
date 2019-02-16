@@ -55,7 +55,7 @@ class Menu {
             case 'pause':
                 switch(this.menu.items[this.selectedItem].action) {
                     case 'resume':
-                        if (this.game.editor.enabled = true) {
+                        if (this.game.editor.enabled === true) {
                             this.game.restartLevel();
                         }
                         this.game.editor.enabled = false;
