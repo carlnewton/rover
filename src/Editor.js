@@ -130,12 +130,50 @@ class Editor {
 
         switch (location) {
             case 'top':
+                if (this.entityExistsInRow(0)) {
+                    return;
+                }
                 this.game.level.map.map.splice(0, 1);
                 this.shiftEntities('up');
                 break;
             case 'bottom':
+                if (this.entityExistsInRow(this.game.level.map.map.length - 1)) {
+                    return;
+                }
                 this.game.level.map.map.splice(-1, 1);
                 break;
+        }
+    }
+
+    entityExistsInColumn(column) {
+        if (this.game.player.position.cell === column) {
+            return true;
+        }
+
+        for (let entities of ['pushBlockHomes', 'laserEmitters', 'pushBlocks', 'exits']) {
+            if (this.game.level.map.interactables[entities] !== undefined) {
+                for (let entity of this.game.level.map.interactables[entities]) {
+                    if (entity.position.cell === column) {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+
+    entityExistsInRow(row) {
+        if (this.game.player.position.row === row) {
+            return true;
+        }
+
+        for (let entities of ['pushBlockHomes', 'laserEmitters', 'pushBlocks', 'exits']) {
+            if (this.game.level.map.interactables[entities] !== undefined) {
+                for (let entity of this.game.level.map.interactables[entities]) {
+                    if (entity.position.row === row) {
+                        return true;
+                    }
+                }
+            }
         }
     }
 
@@ -146,12 +184,18 @@ class Editor {
 
         switch (location) {
             case 'left':
+                if (this.entityExistsInColumn(0)) {
+                    return;
+                }
                 for (let row of this.game.level.map.map) {
                     row.splice(0, 1);
                 }
                 this.shiftEntities('left');
                 break;
             case 'right':
+                if (this.entityExistsInColumn(this.game.level.map.map[0].length - 1)) {
+                    return;
+                }
                 for (let row of this.game.level.map.map) {
                     row.splice(-1, 1);
                 }
