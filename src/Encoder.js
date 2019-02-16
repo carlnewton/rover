@@ -307,7 +307,6 @@ class Encoder {
                             }
                             break;
                         case 'mirror':
-                            console.log(pushBlock)
                             switch (pushBlock.orientation) {
                                 case 90:
                                     entities.push('bml');

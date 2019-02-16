@@ -61,10 +61,64 @@ class Editor {
             case 'top':
                 var row = JSON.parse(JSON.stringify(this.game.level.map.map[0]));
                 this.game.level.map.map.unshift(row);
+                this.shiftEntities('down');
                 break;
             case 'bottom':
                 var row = JSON.parse(JSON.stringify(this.game.level.map.map.slice(-1)[0]));
                 this.game.level.map.map.push(row);
+                break;
+        }
+    }
+
+    shiftEntities(direction) {
+        switch (direction) {
+            case 'down':
+                var playerRow = this.game.level.map.player.position.row += 1;
+                this.game.player.position.row = playerRow;
+
+                for (let entities of ['pushBlockHomes', 'laserEmitters', 'pushBlocks', 'exits']) {
+                    if (this.game.level.map.interactables[entities] !== undefined) {
+                        for (let entity of this.game.level.map.interactables[entities]) {
+                            entity.position.row += 1;
+                        }
+                    }
+                }
+                break;
+            case 'up':
+                var playerRow = this.game.level.map.player.position.row -= 1;
+                this.game.player.position.row = playerRow;
+
+                for (let entities of ['pushBlockHomes', 'laserEmitters', 'pushBlocks', 'exits']) {
+                    if (this.game.level.map.interactables[entities] !== undefined) {
+                        for (let entity of this.game.level.map.interactables[entities]) {
+                            entity.position.row -= 1;
+                        }
+                    }
+                }
+                break;
+            case 'right':
+                var playerCell = this.game.level.map.player.position.cell += 1;
+                this.game.player.position.cell = playerCell;
+
+                for (let entities of ['pushBlockHomes', 'laserEmitters', 'pushBlocks', 'exits']) {
+                    if (this.game.level.map.interactables[entities] !== undefined) {
+                        for (let entity of this.game.level.map.interactables[entities]) {
+                            entity.position.cell += 1;
+                        }
+                    }
+                }
+                break;
+            case 'left':
+                var playerCell = this.game.level.map.player.position.cell -= 1;
+                this.game.player.position.cell = playerCell;
+
+                for (let entities of ['pushBlockHomes', 'laserEmitters', 'pushBlocks', 'exits']) {
+                    if (this.game.level.map.interactables[entities] !== undefined) {
+                        for (let entity of this.game.level.map.interactables[entities]) {
+                            entity.position.cell -= 1;
+                        }
+                    }
+                }
                 break;
         }
     }
@@ -76,10 +130,11 @@ class Editor {
 
         switch (location) {
             case 'top':
-                this.game.level.map.map.splice(0, 1)
+                this.game.level.map.map.splice(0, 1);
+                this.shiftEntities('up');
                 break;
             case 'bottom':
-                this.game.level.map.map.splice(-1, 1)
+                this.game.level.map.map.splice(-1, 1);
                 break;
         }
     }
@@ -94,6 +149,7 @@ class Editor {
                 for (let row of this.game.level.map.map) {
                     row.splice(0, 1);
                 }
+                this.shiftEntities('left');
                 break;
             case 'right':
                 for (let row of this.game.level.map.map) {
@@ -109,6 +165,7 @@ class Editor {
                 for (let row of this.game.level.map.map) {
                     row.unshift(row[0])
                 }
+                this.shiftEntities('right');
                 break;
             case 'right':
                 for (let row of this.game.level.map.map) {
@@ -163,13 +220,7 @@ class Editor {
         var laserEmitters = this.game.level.map.interactables.laserEmitters;
 
         if (laserEmitters === undefined) {
-            if (this.game.level.map.interactables === undefined) {
-                this.game.level.map.interactables = {};
-            }
-
-            if (this.game.level.map.interactables.laserEmitters === undefined) {
-                this.game.level.map.interactables.laserEmitters = [];
-            }
+            this.game.level.map.interactables.laserEmitters = [];
 
             this.game.level.map.interactables.laserEmitters.push(
                 {
@@ -211,10 +262,6 @@ class Editor {
             return;
         }
 
-        if (this.game.level.map.interactables === undefined) {
-            return;
-        }
-
         var pushBlock = this.game.pushBlocks.getBlockByLocation(focussedTile.y, focussedTile.x);
         if (pushBlock !== undefined) {
             for (let mapPushBlock of this.game.level.map.interactables.pushBlocks) {
@@ -243,13 +290,7 @@ class Editor {
         var pushBlockHomes = this.game.level.map.interactables.pushBlockHomes;
 
         if (pushBlockHomes === undefined) {
-            if (this.game.level.map.interactables === undefined) {
-                this.game.level.map.interactables = {};
-            }
-
-            if (this.game.level.map.interactables.pushBlockHomes === undefined) {
-                this.game.level.map.interactables.pushBlockHomes = [];
-            }
+            this.game.level.map.interactables.pushBlockHomes = [];
 
             this.game.level.map.interactables.pushBlockHomes.push(
                 {
@@ -311,10 +352,6 @@ class Editor {
     }
 
     removeEntities() {
-        if (this.game.level.map.interactables === undefined) {
-            return;
-        }
-
         var focussedTile = this.getFocussedTile();
         if (focussedTile === undefined) {
             return;
@@ -401,10 +438,6 @@ class Editor {
         if (this.game.pushBlocks.getBlockByLocation(focussedTile.y, focussedTile.x) !== undefined) {
             this.cyclePushBlock(focussedTile);
             return;
-        }
-
-        if (this.game.level.map.interactables === undefined) {
-            this.game.level.map.interactables = {};
         }
 
         if (this.game.level.map.interactables.pushBlocks === undefined) {
