@@ -323,6 +323,31 @@ class Editor {
                 }
             }
         }
+
+        var laserEmitters = this.game.level.map.interactables.laserEmitters;
+        if (laserEmitters !== undefined) {
+            for (let laserEmitter of laserEmitters) {
+                if (
+                    laserEmitter.position.row === focussedTile.y
+                    && laserEmitter.position.cell === focussedTile.x
+                ) {
+                    switch (laserEmitter.direction) {
+                        case 'down':
+                            laserEmitter.direction = 'left';
+                            break;
+                        case 'left':
+                            laserEmitter.direction = 'up';
+                            break;
+                        case 'up':
+                            laserEmitter.direction = 'right';
+                            break;
+                        case 'right':
+                            laserEmitter.direction = 'down';
+                            break;
+                    }
+                }
+            }
+        }
     }
  
     addPushBlockHome() {
