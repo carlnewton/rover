@@ -9,7 +9,7 @@ class Player {
             row: null,
             cell: null
         }
-        this.speed = 8;
+        this.speed = 6;
         this.moving = false;
     }
 

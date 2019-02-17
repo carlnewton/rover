@@ -34,8 +34,8 @@ class Maps {
             },
             {
                 levelID: 7,
-                name: 'Without a trace',
-                code: '8a000102b0h02000010012hb002110111hb001101110hb0110111100001x5a00pe0',
+                name: 'Going in circles',
+                code: '12a00010x11ahb000010000101b01x6ahb01000h0000200b0x5a1000100h001x9a0x6ab0000h020pe0x5a1110x6a',
             },
             {
                 levelID: 8,

@@ -3,7 +3,6 @@ class Move {
     constructor(game) {
         this.game = game;
         this.list = [];
-
     }
 
     add(entityType, entityID, direction) {
@@ -37,7 +36,11 @@ class Move {
     movePlayer() {
         var movement = this.getEarliestMovement('player', 0);
         if (movement === undefined) {
-            return false;
+            var lastDirection = this.game.controls.lastDirection;
+            if (this.game.controls.directions.includes(lastDirection)) {
+                this.add('player', 0, lastDirection);
+            }
+            return;
         }
 
         var playerMoved = this.game.player.move(movement.direction);

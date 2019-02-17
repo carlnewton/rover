@@ -7,12 +7,18 @@ class Controls {
             x: 0,
             y: 0
         };
+        this.directions = [];
+        this.lastDirection = null;
     }
 
     listen() {
         var _this = this;
         window.addEventListener('keydown', function(key) {
             _this.keyDown(key);
+        });
+
+        window.addEventListener('keyup', function(key) {
+            _this.keyUp(key);
         });
 
         window.addEventListener('click', function() {
@@ -31,6 +37,47 @@ class Controls {
         }
     }
 
+    keyUp(key) {
+        switch (key.keyCode) {
+            // `w` or up arrow
+            case 87:
+            case 38:
+                for(var direction = 0; direction < this.directions.length; direction++){ 
+                   if (this.directions[direction] === 'up') {
+                     this.directions.splice(direction, 1); 
+                   }
+                }
+                break;
+            // `s` or down arrow
+            case 83:
+            case 40:
+                for(var direction = 0; direction < this.directions.length; direction++){ 
+                   if (this.directions[direction] === 'down') {
+                     this.directions.splice(direction, 1); 
+                   }
+                }
+                break;
+            // `a` or left arrow
+            case 65:
+            case 37:
+                for(var direction = 0; direction < this.directions.length; direction++){ 
+                   if (this.directions[direction] === 'left') {
+                     this.directions.splice(direction, 1); 
+                   }
+                }
+                break;
+            // `d` or right arrow
+            case 68:
+            case 39:
+                for(var direction = 0; direction < this.directions.length; direction++){ 
+                   if (this.directions[direction] === 'right') {
+                     this.directions.splice(direction, 1); 
+                   }
+                }
+                break;
+        }
+    }
+
     keyDown(key) {
         if (this.locked === true) {
             return;
@@ -40,22 +87,50 @@ class Controls {
             // `w` or up arrow
             case 87:
             case 38:
-                this.upKey();
+                if (this.game.paused === false && this.game.editor.enabled === false) {
+                    this.lastDirection = 'up';
+                    if (!this.directions.includes('up')) {
+                        this.directions.push('up')
+                    }
+                } else {
+                    this.upKey();
+                }
                 break;
             // `s` or down arrow
             case 83:
             case 40:
-                this.downKey();
+                if (this.game.paused === false && this.game.editor.enabled === false) {
+                    this.lastDirection = 'down';
+                    if (!this.directions.includes('down')) {
+                        this.directions.push('down')
+                    }
+                } else {
+                    this.downKey();
+                }
                 break;
             // `a` or left arrow
             case 65:
             case 37:
-                this.leftKey();
+                if (this.game.paused === false && this.game.editor.enabled === false) {
+                    this.lastDirection = 'left';
+                    if (!this.directions.includes('left')) {
+                        this.directions.push('left')
+                    }
+                } else {
+                    this.leftKey();
+                }
                 break;
             // `d` or right arrow
             case 68:
             case 39:
-                this.rightKey();
+                if (this.game.paused === false && this.game.editor.enabled === false) {
+                    this.lastDirection = 'right';
+                    if (!this.directions.includes('right')) {
+                        this.directions.push('right')
+                    }
+                } else {
+                    this.rightKey();
+                }
                 break;
             // space bar
             case 32:
@@ -110,7 +185,6 @@ class Controls {
                 this.game.editor.changeMapTile('wall');
                 return;
             }
-            this.game.move.add('player', 0, 'up');
         } else {
             this.game.menu.up();
         }
@@ -202,7 +276,6 @@ class Controls {
             if (this.game.editor.enabled) {
                 return;
             }
-            this.game.move.add('player', 0, 'down');
         } else {
             this.game.menu.down();
         }
@@ -213,7 +286,6 @@ class Controls {
             if (this.game.editor.enabled) {
                 return;
             }
-            this.game.move.add('player', 0, 'left');
         } else {
             this.game.menu.left();
         }
@@ -224,7 +296,6 @@ class Controls {
             if (this.game.editor.enabled) {
                 return;
             }
-            this.game.move.add('player', 0, 'right');
         } else {
             this.game.menu.right();
         }
