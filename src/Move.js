@@ -34,6 +34,9 @@ class Move {
     }
 
     movePlayer() {
+        if (game.exit.found()) {
+            return;
+        }
         var movement = this.getEarliestMovement('player', 0);
         if (movement === undefined) {
             var lastDirection = this.game.controls.lastDirection;
