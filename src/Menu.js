@@ -91,6 +91,7 @@ class Menu {
                 switch(this.menu.items[this.selectedItem].action) {
                     case 'exit':
                         this.switchMenu('pause')
+                        this.game.editor.enabled = false;
                         break;
                     case 'edit':
                         this.game.pause();

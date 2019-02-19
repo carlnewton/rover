@@ -274,6 +274,7 @@ class Controls {
     downKey() {
         if (this.game.paused === false) {
             if (this.game.editor.enabled) {
+                this.game.editor.hideControls = !this.game.editor.hideControls;
                 return;
             }
         } else {

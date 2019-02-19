@@ -52,8 +52,59 @@ class Canvas {
     drawFrame() {
         this.drawLevel();
         this.drawPlayer();
+        this.drawControls();
         this.drawEditor();
         this.drawMenu();
+    }
+
+    drawControls() {
+        if (this.game.editor.enabled === true) {
+            this.drawEditorControls();
+            return
+        }
+
+        if (
+            this.game.level.map.levelID > 1
+            || Date.now() - this.game.level.startTime < 4000
+            || this.game.controls.lastDirection !== null
+        ) {
+            return;
+        }
+
+        var fontSize = this.tileSize / 2;
+        this.ctx.textAlign = 'center'; 
+        this.ctx.font = fontSize + 'px Arial';
+        this.ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+        var controls = 'Press W, A, S, D or UP, LEFT, DOWN, RIGHT to move',
+            textWidth = this.ctx.measureText(controls).width;
+
+        while (textWidth > this.c.width - this.tileSize) {
+            fontSize -= 1;
+            this.ctx.font = fontSize + 'px Arial';
+            textWidth = this.ctx.measureText(controls).width;
+        }
+
+        this.ctx.fillText(controls, this.c.width / 2, this.c.height - fontSize * 2);
+    }
+
+    drawEditorControls() {
+        if (this.game.editor.hideControls === true) {
+            return;
+        }
+        var fontSize = this.tileSize / 2;
+        this.ctx.textAlign = 'center'; 
+        this.ctx.font = fontSize + 'px Arial';
+        this.ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+        var controls = '[F]loor, [W]all, [P]layer, [E]xit, [B]lock, [L]aser, [R]otate, [H]ome, [S]how/hide controls, [CLICK] resize',
+            textWidth = this.ctx.measureText(controls).width;
+
+        while (textWidth > this.c.width - this.tileSize) {
+            fontSize -= 1;
+            this.ctx.font = fontSize + 'px Arial';
+            textWidth = this.ctx.measureText(controls).width;
+        }
+
+        this.ctx.fillText(controls, this.c.width / 2, this.c.height - fontSize * 2);
     }
 
     drawEditor() {
@@ -102,6 +153,7 @@ class Canvas {
             this.c.clientHeight
         );
 
+        this.ctx.textAlign = 'left'; 
         var fontSize = this.tileSize;
         this.ctx.font = fontSize + 'px Arial';
 

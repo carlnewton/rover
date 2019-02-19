@@ -2,6 +2,7 @@ class Editor {
     constructor(game) {
         this.game = game;
         this.enabled = false;
+        this.hideControls = false;
     }
 
     start() {
