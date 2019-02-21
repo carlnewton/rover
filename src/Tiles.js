@@ -71,7 +71,16 @@ class Tiles {
                 obstructsPlayer: true,
                 obstructsPushBlock: true,
                 obstructsLaser: true,
-            }
+            },
+            {
+                id: 4,
+                name: 'slide',
+                colour: '#eb7b59',
+                detailColour: '#d9d2c1',
+                obstructsPlayer: true,
+                obstructsPushBlock: true,
+                obstructsLaser: true,
+            },
         ];
 
         this.pushBlockHomeTiles = [

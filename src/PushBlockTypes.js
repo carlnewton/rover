@@ -1,9 +1,4 @@
 class PushBlockTypes {
-
-    // #todo #idea iceBlock doesn't stop moving until it hits a boundary.
-    //             player can push two lightBlocks in a row
-    //             energyBlock can power something when in place
-
     constructor() {
         this.list = [
             {
@@ -25,6 +20,11 @@ class PushBlockTypes {
                 id: 3,
                 name: 'mirror',
                 tileID: 3
+            },
+            {
+                id: 4,
+                name: 'slide',
+                tileID: 4
             }
         ];
     }

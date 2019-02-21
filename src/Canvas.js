@@ -41,11 +41,11 @@ class Canvas {
                 newWidth = this.c.width / widthTiles,
                 newHeight = this.c.height / heightTiles;
 
-                if (newHeight < newWidth && newHeight < this.tileSize) {
-                    this.tileSize = Math.floor(newHeight);
-                } else if (newWidth < this.tileSize) {
-                    this.tileSize = Math.floor(newWidth);
-                }
+            if (newHeight < newWidth && newHeight < this.tileSize) {
+                this.tileSize = Math.floor(newHeight);
+            } else if (newWidth < this.tileSize) {
+                this.tileSize = Math.floor(newWidth);
+            }
         }
     }
 
@@ -349,6 +349,9 @@ class Canvas {
                 case 'mirror':
                     this.drawMirror(pushBlock.tile.colour, pushBlock.tile.detailColour, top, left, direction, pushBlock.active);
                     break;
+                case 'slide':
+                    this.drawSlideBlock(pushBlock.tile.colour, pushBlock.tile.detailColour, top, left, direction, pushBlock.active);
+                    break;
                 default:
                     this.drawTile(pushBlock.tile.colour, top, left);
                     break;
@@ -547,8 +550,49 @@ class Canvas {
         
     }
 
-    drawMirror(colour, detailColour, top, left, direction, active) {
+    drawSlideBlock(colour, detailColour, top, left, direction, active) {
+        this.drawTile(detailColour, top, left);
 
+        this.ctx.fillStyle = colour;
+        top += this.getTopPadding();
+        left += this.getLeftPadding();
+
+        var thickness = this.tileSizePercent(5);
+
+        this.ctx.strokeStyle = colour;
+        this.ctx.lineWidth = thickness;
+        this.ctx.strokeRect(
+            left + (thickness / 2),
+            top + (thickness / 2),
+            this.tileSize - (thickness), 
+            this.tileSize - (thickness)
+        );
+
+        this.ctx.beginPath();
+        this.ctx.moveTo(left + this.tileSizePercent(30), top);
+        this.ctx.lineTo(left, top + this.tileSizePercent(30));
+        this.ctx.lineTo(left, top + this.tileSizePercent(60));
+        this.ctx.lineTo(left + this.tileSizePercent(60), top);
+        this.ctx.fill();
+
+        this.ctx.beginPath();
+        this.ctx.moveTo(left + this.tileSizePercent(85), top);
+        this.ctx.lineTo(left, top + this.tileSizePercent(85));
+        this.ctx.lineTo(left, top + this.tileSize);
+        this.ctx.lineTo(left + this.tileSizePercent(15), top + this.tileSize);
+        this.ctx.lineTo(left + this.tileSize, top + this.tileSizePercent(15));
+        this.ctx.lineTo(left + this.tileSize, top);
+        this.ctx.fill();
+
+        this.ctx.beginPath();
+        this.ctx.moveTo(left + this.tileSize, top + this.tileSizePercent(40));
+        this.ctx.lineTo(left + this.tileSizePercent(40), top + this.tileSize);
+        this.ctx.lineTo(left + this.tileSizePercent(70), top + this.tileSize);
+        this.ctx.lineTo(left + this.tileSize, top + this.tileSizePercent(70));
+        this.ctx.fill();
+    }
+
+    drawMirror(colour, detailColour, top, left, direction, active) {
         this.drawTile(detailColour, top, left);
 
         if (active === true) {

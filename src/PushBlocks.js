@@ -66,6 +66,28 @@ class PushBlocks {
 
         if (pushBlock.nextRow === null && pushBlock.nextCell === null) {
             if (!this.blockCanMove(direction, id)) {
+                if (pushBlock.tile.name === 'slide') {
+                    var otherBlockPosition = newPosition;
+                    switch (direction) {
+                        case 'up':
+                            otherBlockPosition.row -= 1;
+                            break;
+                        case 'down':
+                            otherBlockPosition.row += 1;
+                            break;
+                        case 'left':
+                            otherBlockPosition.cell -= 1;
+                            break;
+                        case 'right':
+                            otherBlockPosition.cell += 1;
+                            break;
+                    }
+                    var otherBlock = this.getBlockByLocation(otherBlockPosition.row, otherBlockPosition.cell);
+
+                    if (otherBlock !== undefined) {
+                        this.game.move.add('pushBlock', otherBlock.id, direction);
+                    }
+                }
                 return false;
             }
             pushBlock.nextRow = newPosition.row;
@@ -79,6 +101,9 @@ class PushBlocks {
                     pushBlock.nextRow = null;
                     pushBlock.nextCell = null;
                     this.checkStatus();
+                    if (pushBlock.tile.name === 'slide') {
+                        this.game.move.add('pushBlock', pushBlock.id, direction)
+                    }
                     return true;
                 }
 
@@ -90,6 +115,9 @@ class PushBlocks {
                     pushBlock.nextRow = null;
                     pushBlock.nextCell = null;
                     this.checkStatus();
+                    if (pushBlock.tile.name === 'slide') {
+                        this.game.move.add('pushBlock', pushBlock.id, direction)
+                    }
                     return true;
                 }
 
@@ -101,6 +129,9 @@ class PushBlocks {
                     pushBlock.nextRow = null;
                     pushBlock.nextCell = null;
                     this.checkStatus();
+                    if (pushBlock.tile.name === 'slide') {
+                        this.game.move.add('pushBlock', pushBlock.id, direction)
+                    }
                     return true;
                 }
 
@@ -112,6 +143,9 @@ class PushBlocks {
                     pushBlock.nextRow = null;
                     pushBlock.nextCell = null;
                     this.checkStatus();
+                    if (pushBlock.tile.name === 'slide') {
+                        this.game.move.add('pushBlock', pushBlock.id, direction)
+                    }
                     return true;
                 }
 

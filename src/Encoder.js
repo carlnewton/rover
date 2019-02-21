@@ -132,6 +132,8 @@ class Encoder {
                         case 'c':
                             type = 'laserCapture';
                             break;
+                        case 's':
+                            type = 'slide';
                     }
                     if (type == 'default') {
                         levelString = levelString.slice(1);
@@ -324,6 +326,9 @@ class Encoder {
                             break;
                         case 'laserCapture':
                             entities.push('bc');
+                            break;
+                        case 'slide':
+                            entities.push('bs');
                             break;
                     }
                 }

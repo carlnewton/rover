@@ -72,7 +72,6 @@ class Maps {
                 name: 'Diamonds and guns',
                 code: '9a111101x7a0001x5a00bc00011100101001001000ll0001001010011100pe0001x5a0001x7a01111',
             },
-            // Level
             {
                 levelID: 15,
                 name: 'Simple',
@@ -102,6 +101,26 @@ class Maps {
                 levelID: 20,
                 name: 'Toggle',
                 code: '9abmr0222bm0110e02x5a000022bl002bmr0bml0bmu00bmu02bml02bmu0000bc011101110110000100010x6ap00100001000',
+            },
+            {
+                levelID: 21,
+                name: 'Let this one slide',
+                code: '9a120x6a10x5a20x14abs00h00pe020x5a2000020x8a10x5a201',
+            },
+            {
+                levelID: 22,
+                name: 'Gemini',
+                code: '10a120x7a10x9a20x7a20020bs00pe000h0hbs0x10a20x9a2010020x5a1',
+            },
+            {
+                levelID: 23,
+                name: 'Pressing forward',
+                code: '9a112x7a110x5abs001100102001122101221x5a0111000bc0202220pe00blr0x5a200012x5a',
+            },
+            {
+                levelID: 24,
+                name: 'The domino effect',
+                code: '15a111101010101x6a00h00h00h00h00011110x11a1110000p00e00b0x5a110x13a10000bs00bs00bs00bs0x20a',
             }
         ];
     }
