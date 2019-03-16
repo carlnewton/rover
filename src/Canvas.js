@@ -421,37 +421,37 @@ class Canvas {
 
         if (active === true) {
             this.ctx.beginPath();
-            this.ctx.moveTo(left + this.tileSizePercent(50), top + this.tileSizePercent(35));
-            this.ctx.lineTo(left + this.tileSizePercent(65), top + this.tileSizePercent(50));
-            this.ctx.lineTo(left + this.tileSizePercent(50), top + this.tileSizePercent(65));
-            this.ctx.lineTo(left + this.tileSizePercent(35), top + this.tileSizePercent(50));
+            this.ctx.moveTo(Math.floor(left + this.tileSizePercent(50)), Math.floor(top + this.tileSizePercent(35)));
+            this.ctx.lineTo(Math.floor(left + this.tileSizePercent(65)), Math.floor(top + this.tileSizePercent(50)));
+            this.ctx.lineTo(Math.floor(left + this.tileSizePercent(50)), Math.floor(top + this.tileSizePercent(65)));
+            this.ctx.lineTo(Math.floor(left + this.tileSizePercent(35)), Math.floor(top + this.tileSizePercent(50)));
             this.ctx.fill();
         }
         
         this.ctx.fillStyle = colour;
 
         this.ctx.beginPath();
-        this.ctx.moveTo(left, top);
-        this.ctx.lineTo(left + this.tileSizePercent(80), top);
-        this.ctx.lineTo(left, top + this.tileSizePercent(80));
+        this.ctx.moveTo(Math.floor(left), Math.floor(top));
+        this.ctx.lineTo(Math.floor(left + this.tileSizePercent(80)), Math.floor(top));
+        this.ctx.lineTo(Math.floor(left), Math.floor(top + this.tileSizePercent(80)));
         this.ctx.fill();
 
         this.ctx.beginPath();
-        this.ctx.moveTo(left + this.tileSize, top);
-        this.ctx.lineTo(left + this.tileSizePercent(20), top);
-        this.ctx.lineTo(left + this.tileSize, top + this.tileSizePercent(80));
+        this.ctx.moveTo(Math.floor(left + this.tileSize), Math.floor(top));
+        this.ctx.lineTo(Math.floor(left + this.tileSizePercent(20)), Math.floor(top));
+        this.ctx.lineTo(Math.floor(left + this.tileSize), Math.floor(top + this.tileSizePercent(80)));
         this.ctx.fill();
 
         this.ctx.beginPath();
-        this.ctx.moveTo(left, top + this.tileSize);
-        this.ctx.lineTo(left + this.tileSizePercent(80), top + this.tileSize);
-        this.ctx.lineTo(left, top + this.tileSizePercent(20));
+        this.ctx.moveTo(Math.floor(left), Math.floor(top + this.tileSize));
+        this.ctx.lineTo(Math.floor(left + this.tileSizePercent(80)), Math.floor(top + this.tileSize));
+        this.ctx.lineTo(Math.floor(left), Math.floor(top + this.tileSizePercent(20)));
         this.ctx.fill();
 
         this.ctx.beginPath();
-        this.ctx.moveTo(left + this.tileSize, top + this.tileSize);
-        this.ctx.lineTo(left + this.tileSizePercent(20), top + this.tileSize);
-        this.ctx.lineTo(left + this.tileSize, top + this.tileSizePercent(20));
+        this.ctx.moveTo(Math.floor(left + this.tileSize), Math.floor(top + this.tileSize));
+        this.ctx.lineTo(Math.floor(left + this.tileSizePercent(20)), Math.floor(top + this.tileSize));
+        this.ctx.lineTo(Math.floor(left + this.tileSize), Math.floor(top + this.tileSizePercent(20)));
         this.ctx.fill();
     }
 

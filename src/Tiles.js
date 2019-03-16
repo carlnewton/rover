@@ -4,7 +4,7 @@ class Tiles {
             {
                 id: 0,
                 name: 'floor',
-                colour: '#e5ddcb',
+                colour: '#f0f6fb',
                 obstructsPlayer: false,
                 obstructsPushBlock: false,
                 obstructsLaser: false,
@@ -12,7 +12,7 @@ class Tiles {
             {
                 id: 1,
                 name: 'wall',
-                colour: '#bc6247',
+                colour: '#5f6b75',
                 obstructsPlayer: true,
                 obstructsPushBlock: true,
                 obstructsLaser: true,
@@ -20,7 +20,7 @@ class Tiles {
             {
                 id: 2,
                 name: 'noBlockFloor',
-                colour: '#d9d2c1',
+                colour: '#b3c3d1',
                 obstructsPlayer: false,
                 obstructsPushBlock: true,
                 obstructsLaser: false,
@@ -31,7 +31,7 @@ class Tiles {
             {
                 id: 0,
                 name: 'rover',
-                colour: '#685e6c',
+                colour: '#3A89C9',
                 obstructsPlayer: true,
                 obstructsPushBlock: true,
                 obstructsLaser: true,
@@ -42,7 +42,7 @@ class Tiles {
             {
                 id: 0,
                 name: 'block',
-                colour: '#eb7b59',
+                colour: '#FF8F8F',
                 obstructsPlayer: true,
                 obstructsPushBlock: true,
                 obstructsLaser: true,
@@ -50,7 +50,7 @@ class Tiles {
             {
                 id: 1,
                 name: 'laser',
-                colour: '#eb7b59',
+                colour: '#FF8F8F',
                 obstructsPlayer: true,
                 obstructsPushBlock: true,
                 obstructsLaser: true,
@@ -58,7 +58,7 @@ class Tiles {
             {
                 id: 2,
                 name: 'laserCapture',
-                colour: '#eb7b59',
+                colour: '#FF8F8F',
                 obstructsPlayer: true,
                 obstructsPushBlock: true,
                 obstructsLaser: true,
@@ -66,8 +66,8 @@ class Tiles {
             {
                 id: 3,
                 name: 'mirror',
-                colour: '#eb7b59',
-                detailColour: '#d9d2c1',
+                colour: '#FF8F8F',
+                detailColour: '#e5e7ea',
                 obstructsPlayer: true,
                 obstructsPushBlock: true,
                 obstructsLaser: true,
@@ -75,8 +75,8 @@ class Tiles {
             {
                 id: 4,
                 name: 'slide',
-                colour: '#eb7b59',
-                detailColour: '#d9d2c1',
+                colour: '#FF8F8F',
+                detailColour: '#e5e7ea',
                 obstructsPlayer: true,
                 obstructsPushBlock: true,
                 obstructsLaser: true,
@@ -87,7 +87,7 @@ class Tiles {
             {
                 id: 0,
                 name: 'pushBlockHome',
-                colour: '#eb7b59',
+                colour: '#FF8F8F',
                 obstructsPlayer: false,
                 obstructsPushBlock: false,
                 obstructsLaser: false,
@@ -98,7 +98,7 @@ class Tiles {
             {
                 id: 0,
                 name: 'enabled',
-                colour: '#685e6c',
+                colour: '#3A89C9',
                 obstructsPlayer: false,
                 obstructsPushBlock: false,
                 obstructsLaser: false,
@@ -106,7 +106,7 @@ class Tiles {
             {
                 id: 1,
                 name: 'disabled',
-                colour: '#c7c0b1',
+                colour: '#c2daee',
                 obstructsPlayer: false,
                 obstructsPushBlock: false,
                 obstructsLaser: false,
@@ -117,7 +117,7 @@ class Tiles {
             {
                 id: 0,
                 name: 'laserEmitter',
-                colour: '#bc6247',
+                colour: '#5f6b75',
                 obstructsPlayer: true,
                 obstructsPushBlock: true
             }
