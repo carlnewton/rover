@@ -81,6 +81,7 @@ class Canvas {
                         'Place block/Cycle block type: B',
                         'Place block home: H',
                         'Place laser: L',
+                        'Place no-block floor: N',
                         'Rotate entity: R',
                         'Remove entity: X',
                         'Resize map: Click',
@@ -111,12 +112,6 @@ class Canvas {
         this.ctx.fillStyle = 'rgba(255, 255, 255, ' + opacity + ')';
 
         var textWidth = this.ctx.measureText(controls).width;
-
-        while (textWidth > this.c.width - this.tileSize) {
-            fontSize -= 1;
-            this.ctx.font = fontSize + 'px Arial';
-            textWidth = this.ctx.measureText(controls).width;
-        }
 
         for (var textLine = 1; textLine <= controls.length; textLine++) {
             this.ctx.fillText(controls[textLine - 1], this.tileSize / 3, this.tileSize / (1.5) + this.tileSize / 2 * (textLine - 1));
