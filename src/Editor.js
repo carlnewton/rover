@@ -2,7 +2,6 @@ class Editor {
     constructor(game) {
         this.game = game;
         this.enabled = false;
-        this.hideControls = false;
     }
 
     start() {
@@ -546,5 +545,9 @@ class Editor {
             }
 
         }
+    }
+
+    play() {
+        window.location.href = '?l=' + this.game.encoder.encode(this.game.level.map);
     }
 }

@@ -58,25 +58,59 @@ class Canvas {
     }
 
     drawControls() {
+        var fontSize = this.tileSize / 2.5,
+            controls = [],
+            opacity = 1;
+
+        this.ctx.textAlign = 'left'; 
+        this.ctx.font = fontSize + 'px Arial';
+
         if (this.game.editor.enabled === true) {
-            this.drawEditorControls();
-            return
+            switch (this.game.controlHints) {
+                case 'init':
+                    controls = ['Press C for controls'];
+                    opacity = 0.3;
+                    break;
+                case 'display':
+                    opacity = 0.8;
+                    controls = [
+                        'Place floor: F',
+                        'Place wall: W',
+                        'Place player: P',
+                        'Place exit: E',
+                        'Place block/Cycle block type: B',
+                        'Place block home: H',
+                        'Place laser: L',
+                        'Rotate entity: R',
+                        'Remove entity: X',
+                        'Resize map: Click',
+                        'Play level: Space',
+                        'Pause: Esc',
+                        'Toggle controls: C'
+                    ];
+                    break;
+            }
+        } else {
+            switch (this.game.controlHints) {
+                case 'init':
+                    controls = ['Press C for controls'];
+                    opacity = 0.3;
+                    break;
+                case 'display':
+                    opacity = 0.8;
+                    controls = [
+                        'Move: W, A, S, D',
+                        'Restart level: Space',
+                        'Pause: Esc',
+                        'Toggle controls: C'
+                    ];
+                    break;
+            }
         }
 
-        if (
-            this.game.level.map.levelID > 1
-            || Date.now() - this.game.level.startTime < 4000
-            || this.game.controls.lastDirection !== null
-        ) {
-            return;
-        }
+        this.ctx.fillStyle = 'rgba(255, 255, 255, ' + opacity + ')';
 
-        var fontSize = this.tileSize / 2;
-        this.ctx.textAlign = 'center'; 
-        this.ctx.font = fontSize + 'px Arial';
-        this.ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-        var controls = 'Press W, A, S, D or UP, LEFT, DOWN, RIGHT to move',
-            textWidth = this.ctx.measureText(controls).width;
+        var textWidth = this.ctx.measureText(controls).width;
 
         while (textWidth > this.c.width - this.tileSize) {
             fontSize -= 1;
@@ -84,27 +118,9 @@ class Canvas {
             textWidth = this.ctx.measureText(controls).width;
         }
 
-        this.ctx.fillText(controls, this.c.width / 2, this.c.height - fontSize * 2);
-    }
-
-    drawEditorControls() {
-        if (this.game.editor.hideControls === true) {
-            return;
+        for (var textLine = 1; textLine <= controls.length; textLine++) {
+            this.ctx.fillText(controls[textLine - 1], this.tileSize / 3, this.tileSize / (1.5) + this.tileSize / 2 * (textLine - 1));
         }
-        var fontSize = this.tileSize / 2;
-        this.ctx.textAlign = 'center'; 
-        this.ctx.font = fontSize + 'px Arial';
-        this.ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-        var controls = '[F]loor, [W]all, [P]layer, [E]xit, [B]lock, [L]aser, [R]otate, [H]ome, [S]how/hide controls, [CLICK] resize',
-            textWidth = this.ctx.measureText(controls).width;
-
-        while (textWidth > this.c.width - this.tileSize) {
-            fontSize -= 1;
-            this.ctx.font = fontSize + 'px Arial';
-            textWidth = this.ctx.measureText(controls).width;
-        }
-
-        this.ctx.fillText(controls, this.c.width / 2, this.c.height - fontSize * 2);
     }
 
     drawEditor() {
@@ -282,7 +298,7 @@ class Canvas {
     }
 
     drawLevelComplete() {
-        var timer = this.game.timer.count('levelComplete', 1000);
+        var timer = this.game.timer.count('levelComplete', 500);
 
         if (timer.completed === true) {
             return true;
@@ -298,7 +314,7 @@ class Canvas {
     }
 
     drawLevelBegin() {
-        var timer = this.game.timer.count('levelBegin', 1000);
+        var timer = this.game.timer.count('levelBegin', 500);
 
         if (timer.completed === true) {
             return true;

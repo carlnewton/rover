@@ -97,7 +97,7 @@ class Menu {
                         this.game.pause();
                         break;
                     case 'play':
-                        window.location.href = '?l=' + this.game.encoder.encode(this.game.level.map);
+                        this.game.editor.play();
                 }
                 break;
         }

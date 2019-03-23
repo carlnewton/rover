@@ -136,6 +136,10 @@ class Controls {
             case 32:
                 this.spacebarKey();
                 break;
+            // return key
+            case 13:
+                this.returnKey();
+                break;
             // escape
             case 27:
                 this.escapeKey();
@@ -175,6 +179,10 @@ class Controls {
             // `r`
             case 82:
                 this.rKey();
+                break;
+            // `c`
+            case 67:
+                this.cKey();
                 break;
         } 
     }
@@ -226,6 +234,17 @@ class Controls {
         }
     }
 
+    cKey() {
+        switch (this.game.controlHints) {
+            case 'init':
+                this.game.controlHints = 'display';
+                break;
+            case 'display':
+                this.game.controlHints = 'init';
+                break;
+        }
+    }
+
     xKey() {
         if (this.game.paused === false) {
             if (this.game.editor.enabled) {
@@ -274,7 +293,6 @@ class Controls {
     downKey() {
         if (this.game.paused === false) {
             if (this.game.editor.enabled) {
-                this.game.editor.hideControls = !this.game.editor.hideControls;
                 return;
             }
         } else {
@@ -304,10 +322,18 @@ class Controls {
 
     spacebarKey() {
         if (this.game.paused === false) {
-            this.game.pause();
+            if (!this.game.editor.enabled) {
+                this.game.restartLevel();
+            } else {
+                this.game.editor.play();
+            }
         } else {
             this.game.menu.action();
         }
+    }
+
+    returnKey() {
+        this.spacebarKey();
     }
 
     escapeKey() {

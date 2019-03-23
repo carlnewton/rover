@@ -29,6 +29,7 @@ class Game {
         this.lastTickUpdate = Date.now();
         this.delta = 0;
         this.paused = false;
+        this.controlHints = 'init';
 
         this.nextLevelQueued = false;
 
